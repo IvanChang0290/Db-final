@@ -12,6 +12,11 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+if (isset($_POST['visitor'])) {
+    header("Location: visitor.php");
+    exit;
+}
+
 // Retrieve form data
 $user = $_POST['username'];
 $pass = $_POST['password'];
@@ -33,4 +38,3 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 ?>
-
