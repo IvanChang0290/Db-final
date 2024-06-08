@@ -38,6 +38,16 @@ $game_ID = $_POST['game_ID'];
 // Insert user into database
 $sql = "INSERT INTO User (U_ID,Name,Password,Email,Date_of_birth,Country,Game_ID) VALUES ('$U_ID', '$username', '$password', '$email', '$date_of_birth', '$country', '$game_ID')";
 
+if ($conn->query($sql) === FALSE) {
+    echo "<script>
+        alert('Error: " . $sql . "<br>" . $conn->error . "');
+        window.location.href = 'index.html'; // Change this to your original page
+    </script>";
+}
+
+$info = $_POST['game_ID'];
+$sql = "INSERT INTO Backpack (B_ID , U_ID, info) VALUES ('$U_ID', '$U_ID', '$info')";
+
 if ($conn->query($sql) === TRUE) {
     // Redirect back to the original page with success message
     echo "<script>
