@@ -46,7 +46,8 @@
             <tr>
                 <th>#</th>
                 <th>Name</th>
-                <th>Type</th>
+                <th>修改</th>
+                <th>刪除</th>
             </tr>
             
             <?php
@@ -82,7 +83,6 @@
                     while($row = $result->fetch_assoc()) {
                         echo "<tr><td>" . $row["P_ID"]. "</td>
                                   <td>" . $row["Name"]. "</td>
-                                  <td>" . $row["Type"]. "</td>
                                   <td><a href='update.php?id=" . $row["ISBN"] . "'>修改</a></td>
 							      <td><a href='delete.php?id=" . $row["ISBN"] . "'>刪除</a></td>
                                   </tr>";
