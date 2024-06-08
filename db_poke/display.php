@@ -72,7 +72,6 @@
                 } 
 
                 $U_ID = $_GET['U_ID'];
-                echo $U_ID; // Output: some_value
 
                 // SQL query to get Pokémon data
                 $sql = "SELECT * FROM pokemon";  // Ensure this matches your database schema
