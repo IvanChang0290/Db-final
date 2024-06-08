@@ -12,12 +12,23 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+$sql = "SELECT * FROM User";  // Ensure this matches your database schema
+$result = $conn->query($sql);  // Send SQL Query
+
+$U_ID = $result->num_rows;
+$U_ID = strval($U_ID);
+$U_ID = substr($U_ID, 0, 8);
+
 // Retrieve form data
-$user = $_POST['username'];
-$pass = password_hash($_POST['password'], PASSWORD_BCRYPT);
+$username = $_POST['username'];
+$password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+$email = $_POST['email'];
+$date_of_birth = $_POST['date_of_birth'];
+$country = $_POST['country'];
+$game_ID = $_POST['game_ID'];
 
 // Insert user into database
-$sql = "INSERT INTO user (username, password) VALUES ('$user', '$pass')";
+$sql = "INSERT INTO User (U_ID,Name,Password,Email,Date_of_birth,Country,Game_ID) VALUES ('$U_ID', '$username', '$password', '$email', '$date_of_birth', '$country', '$game_ID')";
 
 if ($conn->query($sql) === TRUE) {
     // Redirect back to the original page with success message
