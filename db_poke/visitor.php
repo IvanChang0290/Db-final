@@ -51,10 +51,10 @@
             
             <?php
                 // ******** update your personal settings ******** 
-                $servername = "your_server_name";
-                $username = "your_username";
-                $password = "your_password";
-                $dbname = "your_database_name";
+                $servername = "localhost";
+                $username = "root";
+                $password = "123456789";
+                $dbname = "db_poke";
 
                 // Connect to MySQL server
                 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -75,8 +75,9 @@
                 $result = $conn->query($sql);  // Send SQL Query
 
                 if ($result->num_rows > 0) {    
+                    
                     while($row = $result->fetch_assoc()) {
-                        echo "<tr><td>" . $row["id"]. "</td><td>" . $row["name"]. "</td><td>" . $row["type"]. "</td></tr>";
+                        echo "<tr><td>" . $row["P_ID"]. "</td><td>" . $row["Name"]. "</td><td>" . $row["Type"]. "</td></tr>";
                     }
                 } else {
                     echo "<tr><td colspan='3'>0 results</td></tr>";
