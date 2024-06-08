@@ -14,6 +14,14 @@ if ($conn->connect_error) {
 
 $sql = "SELECT * FROM User";  // Ensure this matches your database schema
 $result = $conn->query($sql);  // Send SQL Query
+if ($conn->query($sql) === FALSE) {
+    // Redirect back to the original page with error message
+    echo "<script>
+        alert('Error: " . $sql . "<br>" . $conn->error . "');
+        window.location.href = 'index.html'; // Change this to your original page
+    </script>";
+}
+
 
 $U_ID = $result->num_rows;
 $U_ID = strval($U_ID);
