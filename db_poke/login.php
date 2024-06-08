@@ -22,7 +22,7 @@ $user = $_POST['username'];
 $pass = $_POST['password'];
 
 // Query to check user credentials
-$sql = "SELECT password FROM users WHERE username='$user'";
+$sql = "SELECT password FROM user WHERE name='$user'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
