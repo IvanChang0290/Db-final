@@ -6,9 +6,9 @@ import re
 #print(dir(mysql))
 
 
-mydb = mysql.connector.connect(user='root', password='police26',
+mydb = mysql.connector.connect(user='root', password='123456789',
                               host='127.0.0.1',
-                              database='db_pokemon')
+                              database='db_poke')
 cursor = mydb.cursor()
 
 
@@ -23,8 +23,8 @@ with open('learn.csv', newline='',encoding="utf-8") as csvfile:
     for row in csv_data:
 
         if i==0 :
-            i+=1;
-            continue;
+            i+=1
+            continue
         #print(row[0],row[1],row[2],row[5],row[6],row[7],row[11],row[16])
 
         #list=[row[0],row[1],row[5],row[16],row[11],row[5],row[6],row[7]]
@@ -36,15 +36,15 @@ with open('learn.csv', newline='',encoding="utf-8") as csvfile:
         a=str(cursor.fetchone())
 
         if a=='None':
-            continue;
+            continue
         
         number = [int(number) for number in re.findall(r'-?\d+\.?\d*', a)]
 
         if count!=0 & number[0]==171:
-            continue;
+            continue
 
         if number[0]==171:
-            count+=1;
+            count+=1
 
         arr=str(number[0])
 
@@ -73,7 +73,7 @@ with open('learn.csv', newline='',encoding="utf-8") as csvfile:
             number4 = [int(number4) for number4 in re.findall(r'-?\d+\.?\d*', a4)]
             arr4=str(number4[0])
 
-        query='INSERT INTO pokemon_learn(P_ID,S_ID) '+'VALUES('
+        query='INSERT INTO Learn(P_ID,S_ID) '+'VALUES('
         new_data='"'+arr+'"'+','+'"'+arr2+'"'+')'+','
         new_data2='('+'"'+arr+'"'+','+'"'+arr3+'"'+')'+','
         new_data3='('+'"'+arr+'"'+','+'"'+arr4+'"'
@@ -81,7 +81,7 @@ with open('learn.csv', newline='',encoding="utf-8") as csvfile:
 
         new_query=query+new_data+new_data2+new_data3+end
         #print(new_query)
-        i+=1;
+        i+=1
         #new_data=np.array([row[0],row[1],row[5],row[16],row[11],row[5],row[6],row[7]])
 
         #print(new_data)

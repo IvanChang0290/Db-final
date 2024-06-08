@@ -5,9 +5,9 @@ import mysql.connector
 #print(dir(mysql))
 
 
-mydb = mysql.connector.connect(user='root', password='police26',
+mydb = mysql.connector.connect(user='root', password='123456789',
                               host='127.0.0.1',
-                              database='db_pokemon')
+                              database='db_poke')
 cursor = mydb.cursor()
 
 debug = 0
@@ -43,7 +43,7 @@ with open('pokemon_alopez247.csv', newline='',encoding="utf-8") as csvfile:
             if debug:
                 print(new_query)
 
-            # cursor.execute(new_query)
+            cursor.execute(new_query)
 
 
 

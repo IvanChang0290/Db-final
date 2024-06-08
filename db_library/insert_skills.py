@@ -5,9 +5,9 @@ import mysql.connector
 #print(dir(mysql))
 
 
-mydb = mysql.connector.connect(user='root', password='police26',
+mydb = mysql.connector.connect(user='root', password='123456789',
                               host='127.0.0.1',
-                              database='db_pokemon')
+                              database='db_poke')
 cursor = mydb.cursor()
 
 
@@ -21,8 +21,8 @@ with open('moves.csv', newline='',encoding="utf-8") as csvfile:
     for row in csv_data:
 
         if i==0 :
-            i+=1;
-            continue;
+            i+=1
+            continue
         #print(row[0],row[1],row[2],row[5],row[6],row[7],row[11],row[16])
 
         #list=[row[0],row[1],row[5],row[16],row[11],row[5],row[6],row[7]]
@@ -35,7 +35,7 @@ with open('moves.csv', newline='',encoding="utf-8") as csvfile:
 
         new_query=query+new_data+end
         #print(new_query)
-        i+=1;
+        i+=1
         #new_data=np.array([row[0],row[1],row[5],row[16],row[11],row[5],row[6],row[7]])
 
         #print(new_data)
