@@ -20,19 +20,14 @@ if (isset($_POST['visitor'])) {
 // Retrieve form data
 $user = $_POST['username'];
 $pass = $_POST['password'];
-$password = password_hash($_POST['password'], PASSWORD_DEFAULT, ['cost' => 12]);
-//echo "$user";
-//echo "$pass";
-echo $password;
+
 // Query to check user credentials
-$sql = "SELECT password FROM user WHERE name='$user'";
+$sql = "SELECT password FROM users WHERE username='$user'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    $passHash = $row["Password"];
-    echo $passHash;
-    if (password_verify($pass, $row["Password"])) {
+    if (password_verify($pass, $row['password'])) {
         echo "Login successful";
     } else {
         echo "Invalid password";
