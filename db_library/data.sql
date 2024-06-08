@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS User
 (
     U_ID VARCHAR(8),
     Name VARCHAR(50) UNIQUE NOT NULL,
-    Password VARCHAR(50) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
     Email VARCHAR(50) NOT NULL,
     Date_of_birth VARCHAR(50) NOT NULL,
     Country VARCHAR(50) NOT NULL,
