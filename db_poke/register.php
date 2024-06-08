@@ -17,7 +17,7 @@ $user = $_POST['username'];
 $pass = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
 // Insert user into database
-$sql = "INSERT INTO users (username, password) VALUES ('$user', '$pass')";
+$sql = "INSERT INTO user (username, password) VALUES ('$user', '$pass')";
 
 if ($conn->query($sql) === TRUE) {
     // Redirect back to the original page with success message
