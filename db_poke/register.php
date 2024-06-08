@@ -39,28 +39,37 @@ $game_ID = $_POST['game_ID'];
 $sql = "INSERT INTO User (U_ID,Name,Password,Email,Date_of_birth,Country,Game_ID) VALUES ('$U_ID', '$username', '$password', '$email', '$date_of_birth', '$country', '$game_ID')";
 
 if ($conn->query($sql) === FALSE) {
+    
+    $message = "Error: " . $conn->error;
+    $conn->close();
+    echo "<script>alert('" . addslashes($message) . "');</script>";
     echo "<script>
-        alert('Error: " . $sql . "<br>" . $conn->error . "');
-        window.location.href = 'index.html'; // Change this to your original page
+        window.location.href = 'index.html';
     </script>";
 }
 
 $info = $_POST['game_ID'];
 $sql = "INSERT INTO Backpack (B_ID , U_ID, info) VALUES ('$U_ID', '$U_ID', '$info')";
-
-if ($conn->query($sql) === TRUE) {
+$result = $conn->query($sql);
+if ($result === TRUE) {
     // Redirect back to the original page with success message
+    $conn->close();
     echo "<script>
         alert('Registration successful!');
-        window.location.href = 'index.html'; // Change this to your original page
+        window.location.href = 'index.html';
     </script>";
 } else {
     // Redirect back to the original page with error message
+    $message = "Error: " . $conn->error;
+    $conn->close();
+
+    echo "<script>alert('" . addslashes($message) . "');</script>";
     echo "<script>
-        alert('Error: " . $sql . "<br>" . $conn->error . "');
-        window.location.href = 'index.html'; // Change this to your original page
+        window.location.href = 'index.html';
     </script>";
 }
 
-$conn->close();
+
+
+
 ?>
