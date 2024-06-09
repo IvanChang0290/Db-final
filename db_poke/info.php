@@ -127,8 +127,32 @@
                     echo "<tr><td colspan='4'>0 results</td></tr>";
                 }
                 echo "</table>";
-
                 echo "<table class='table2'>";
+
+                $sql = "SELECT 
+                            Pokemon_Type.Type AS P_Type 
+                        FROM 
+                            Have
+                        JOIN 
+                            Pokemon_Type ON Have.P_ID = Pokemon_Type.P_ID
+                        WHERE 
+                            Have.B_ID = '$U_ID'AND Have.P_ID = '$P_ID'";
+                $result = $conn->query($sql);  
+                $count = 1;
+                if ($result->num_rows == 1) {  
+                    $row = $result->fetch_assoc();
+                    echo "<tr><th>Type1</th><td>" . $row["P_Type"]. "</td></tr>";
+                    echo "<tr><th>Type2</th><td>none</td></tr>";
+                }
+
+                else if ($result->num_rows > 0) {    
+                    while($row = $result->fetch_assoc()) {
+                        echo "<tr><th>Type{$count}</th><td>" . $row["P_Type"]. "</td></tr>";
+                        $count = $count + 1;
+                    }
+                } else {
+                    echo "<tr><td colspan='4'>0 results</td></tr>";
+                }
 
                 $sql = "SELECT DISTINCT
                             Skill.Name AS S_Name
