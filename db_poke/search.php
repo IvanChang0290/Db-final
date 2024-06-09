@@ -86,7 +86,7 @@
                 $search_filter = $_GET['search_filter'];
 
                 // SQL query to get Pokémon data based on search
-                $sql = "SELECT * FROM pokemon WHERE ";
+                $sql = "SELECT * FROM have WHERE ";
 
                     switch ($search_filter) {
                     case 'id':
