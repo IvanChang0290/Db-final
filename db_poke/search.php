@@ -130,7 +130,11 @@
                 }
 
                 $result = $conn->query($sql);  // Send SQL Query
-
+                if ($result === FALSE) {
+                    // SQL query failed
+                    echo "<tr><td colspan='7' class='error'>Error executing query: " . $conn->error . "</td></tr>";
+                } 
+                else{
                 if ($result->num_rows > 0) {    
                     
                     while($row = $result->fetch_assoc()) {
@@ -147,6 +151,7 @@
                 } else {
                     echo "<tr><td colspan='7'>No results found</td></tr>";
                 }
+            }
                 $conn->close();
             ?>
             
