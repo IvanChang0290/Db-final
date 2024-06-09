@@ -96,21 +96,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if(!empty($Skill_1)){
                     $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$B_ID','$P_ID','$Skill_1')";
                 }
-                if(!empty($Skill_2)){
-                    $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$B_ID','$P_ID','$Skill_2')";
-                }
-                if(!empty($Skill_3)){
-                    $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$B_ID','$P_ID','$Skill_3')";
-                }
             } elseif ($skill_count == 1) {
                 if(!empty($Skill_1)){
                     $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$B_ID','$P_ID','$Skill_1')";
                 }
                 if(!empty($Skill_2)){
                     $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$B_ID','$P_ID','$Skill_2')";
-                }
-                if(!empty($Skill_3)){
-                    $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$B_ID','$P_ID','$Skill_3')";
                 }
             } elseif ($skill_count == 0) {
                 if(!empty($Skill_1)){
