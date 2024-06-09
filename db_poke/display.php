@@ -111,7 +111,11 @@
     </div>
 
     <div class="add-button-container">
-        <button onclick="location.href='add.php?U_ID=<?php echo urlencode($_GET['U_ID']); ?>'">新增 Pokémon</button>
+        <?php 
+            session_start();
+            $_SESSION['U_ID'] = $_GET['U_ID'];
+        ?>
+        <button onclick="location.href='add.php?U_ID=<?php echo $_GET['U_ID'] ?>'">新增 Pokémon</button>
     </div>
 
     <div class="table-container">
