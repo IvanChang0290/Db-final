@@ -47,6 +47,10 @@
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
+        .error {
+            color: red;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -87,7 +91,7 @@
                 } 
                 
                 session_start();
-                $U_ID = $_SESSION['U_ID'] ;
+                $U_ID = $_SESSION['U_ID'];
                 // Get search query and filter
                 $search_query = $_GET['search_query'];
                 $search_filter = $_GET['search_filter'];
@@ -100,7 +104,7 @@
                             Pokemon.DEF AS P_DEF,
                             Pokemon.HP AS P_HP, 
                             Region.Name AS R_Name,
-                            Pokemon_Type.Type AS P_type 
+                            Pokemon_Type.Type AS P_Type 
                         FROM 
                             Have
                         JOIN 
@@ -110,20 +114,20 @@
                         JOIN 
                             Region ON Pokemon.R_ID = Region.R_ID
                         WHERE 
-                            Have.B_ID = '$U_ID' and ";
+                            Have.B_ID = '$U_ID' AND ";
 
                 switch ($search_filter) {
                     case 'id':
-                        $sql .= "Pokemon.P_ID LIKE '%$search_query%'";
+                        $sql .= "Pokemon.P_ID = '$search_query'";
                         break;
                     case 'name':
-                        $sql .= "Pokemon.Name LIKE '%$search_query%'";
+                        $sql .= "Pokemon.Name = '$search_query'";
                         break;
                     case 'type':
-                        $sql .= "Pokemon_Type.Type LIKE '%$search_query%'";
+                        $sql .= "Pokemon_Type.Type = '$search_query'";
                         break;
                     case 'region':
-                        $sql .= "Region.Name LIKE '%$search_query%'";
+                        $sql .= "Region.Name = '$search_query'";
                         break;
                     default:
                         $sql .= "1"; // Default case to prevent SQL errors, although it shouldn't happen.
@@ -132,26 +136,24 @@
                 $result = $conn->query($sql);  // Send SQL Query
                 if ($result === FALSE) {
                     // SQL query failed
-                    echo "<tr><td colspan='7' class='error'>Error executing query: " . $conn->error . "</td></tr>";
-                } 
-                else{
-                if ($result->num_rows > 0) {    
-                    
-                    while($row = $result->fetch_assoc()) {
-                        echo "<tr>
-                                <td>" . $row["P_ID"]. "</td>
-                                <td>" . $row["P_Name"]. "</td>
-                                <td>" . $row["P_Type"]. "</td>
-                                <td>" . $row["P_HP"]. "</td>
-                                <td>" . $row["P_ATK"]. "</td>
-                                <td>" . $row["P_DEF"]. "</td>
-                                <td>" . $row["R_Name"]. "</td>
-                              </tr>";
-                    }
+                    echo "<tr><td colspan='8' class='error'>Error executing query: " . $conn->error . "</td></tr>";
                 } else {
-                    echo "<tr><td colspan='7'>No results found</td></tr>";
+                    if ($result->num_rows > 0) {    
+                        while($row = $result->fetch_assoc()) {
+                            echo "<tr>
+                                    <td>" . $row["P_ID"]. "</td>
+                                    <td>" . $row["P_Name"]. "</td>
+                                    <td>" . $row["P_Type"]. "</td>
+                                    <td>" . $row["P_HP"]. "</td>
+                                    <td>" . $row["P_ATK"]. "</td>
+                                    <td>" . $row["P_DEF"]. "</td>
+                                    <td>" . $row["R_Name"]. "</td>
+                                  </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='8'>No results found</td></tr>";
+                    }
                 }
-            }
                 $conn->close();
             ?>
             
