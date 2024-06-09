@@ -195,7 +195,7 @@
 </div>
 
 <div class="back-button-container">
-        <button onclick="location.href='visitor.php?U_ID='">返回</button>
+        <button onclick="location.href='visitor.php?'">返回</button>
 </div>
 
 </body>
