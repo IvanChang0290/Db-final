@@ -59,6 +59,11 @@
                 <th>#</th>
                 <th>Name</th>
                 <th>Type</th>
+                <th>HP</th>
+                <th>ATK</th>
+                <th>DEF</th>
+                <th>Region</th>
+                <th>Skill</th>
             </tr>
             <?php
                 // ******** update your personal settings ******** 
@@ -86,33 +91,48 @@
                 $search_filter = $_GET['search_filter'];
 
                 // SQL query to get Pokémon data based on search
-                $sql = "SELECT * FROM have WHERE ";
+                $sql = "SELECT p.P_ID, p.Name as PokemonName, p.Type, p.HP, p.ATK, p.DEF, r.Name as RegionName, s.Name as SkillName 
+                        FROM have h 
+                        JOIN pokemon p ON h.P_ID = p.P_ID 
+                        JOIN region r ON p.R_ID = r.R_ID 
+                        JOIN skill s ON h.S_ID = s.S_ID 
+                        WHERE h.B_ID = '0' AND ";
 
-                    switch ($search_filter) {
+                switch ($search_filter) {
                     case 'id':
-                    $sql .= "P_ID LIKE '%$search_query%'";
-                    break;
+                        $sql .= "p.P_ID LIKE '%$search_query%'";
+                        break;
                     case 'name':
-                    $sql .= "Name LIKE '%$search_query%'";
-                    break;
+                        $sql .= "p.Name LIKE '%$search_query%'";
+                        break;
                     case 'type':
-                    $sql .= "Type LIKE '%$search_query%'";
-                    break;
+                        $sql .= "p.Type LIKE '%$search_query%'";
+                        break;
                     case 'region':
-                    $sql .= "Region LIKE '%$search_query%'";
-                    break;
+                        $sql .= "r.Name LIKE '%$search_query%'";
+                        break;
                     default:
-                    $sql .= "1"; // Default case to prevent SQL errors, although it shouldn't happen.
+                        $sql .= "1"; // Default case to prevent SQL errors, although it shouldn't happen.
                 }
+
                 $result = $conn->query($sql);  // Send SQL Query
 
                 if ($result->num_rows > 0) {    
                     
                     while($row = $result->fetch_assoc()) {
-                        echo "<tr><td>" . $row["P_ID"]. "</td><td>" . $row["Name"]. "</td><td>" . $row["Type"]. "</td></tr>";
+                        echo "<tr>
+                                <td>" . $row["P_ID"]. "</td>
+                                <td>" . $row["PokemonName"]. "</td>
+                                <td>" . $row["Type"]. "</td>
+                                <td>" . $row["HP"]. "</td>
+                                <td>" . $row["ATK"]. "</td>
+                                <td>" . $row["DEF"]. "</td>
+                                <td>" . $row["RegionName"]. "</td>
+                                <td>" . $row["SkillName"]. "</td>
+                              </tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='3'>No results found</td></tr>";
+                    echo "<tr><td colspan='8'>No results found</td></tr>";
                 }
                 $conn->close();
             ?>
@@ -122,4 +142,3 @@
 
 </body>
 </html>
-
