@@ -133,9 +133,9 @@
                 $sql = "SELECT DISTINCT
                             Skill.Name AS S_Name, 
                         FROM 
-                            Have
+                            Skill
                         JOIN 
-                            Skill ON Have.S_ID = Skill.S_ID
+                            Have ON Have.S_ID = Skill.S_ID
                         WHERE 
                             Have.B_ID = '$U_ID'AND Have.P_ID = '$P_ID'";
 
