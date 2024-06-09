@@ -68,8 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-
-    $B_ID = $_POST['B_ID'];
+    $B_ID = $_GET['U_ID'];
     $P_ID = $_POST['P_ID'];
     $Skill_1 = $_POST['Skill_1'];
     $Skill_2 = $_POST['Skill_2'];
