@@ -99,11 +99,14 @@
                             Pokemon.ATK AS P_ATK, 
                             Pokemon.DEF AS P_DEF,
                             Pokemon.HP AS P_HP, 
-                            Region.Name AS R_Name 
+                            Region.Name AS R_Name
+                            Pokemon_Type.Type AS P_type 
                         FROM 
                             Have
                         JOIN 
                             Pokemon ON Have.P_ID = Pokemon.P_ID
+                        JOIN 
+                            Pokemon_Type ON Pokemon.P_ID = Pokemon_Type.P_ID
                         JOIN 
                             Region ON Pokemon.R_ID = Region.R_ID
                         WHERE 
@@ -111,16 +114,16 @@
 
                 switch ($search_filter) {
                     case 'id':
-                        $sql .= "p.P_ID LIKE '%$search_query%'";
+                        $sql .= "Pokemon.P_ID LIKE '%$search_query%'";
                         break;
                     case 'name':
-                        $sql .= "p.Name LIKE '%$search_query%'";
+                        $sql .= "Pokemon.Name LIKE '%$search_query%'";
                         break;
                     case 'type':
-                        $sql .= "p.Type LIKE '%$search_query%'";
+                        $sql .= "Pokemon_Type.Type LIKE '%$search_query%'";
                         break;
                     case 'region':
-                        $sql .= "r.Name LIKE '%$search_query%'";
+                        $sql .= "Region.Name LIKE '%$search_query%'";
                         break;
                     default:
                         $sql .= "1"; // Default case to prevent SQL errors, although it shouldn't happen.
