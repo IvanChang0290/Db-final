@@ -152,7 +152,6 @@
                     die("Connection failed: " . $conn->connect_error);
                 } 
                 
-                $U_ID = $_GET['U_ID'];
                 // $sql = "SELECT P_ID,S_ID FROM Have WHERE B_ID = '$U_ID'";
                 $sql = "SELECT DISTINCT
                             Have.P_ID AS P_ID, 
@@ -168,7 +167,7 @@
                         JOIN 
                             Region ON Pokemon.R_ID = Region.R_ID
                         WHERE 
-                            Have.B_ID = '$U_ID'";
+                            Have.B_ID = '0'";
 
                 $result = $conn->query($sql);  
 
