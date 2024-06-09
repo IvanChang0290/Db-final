@@ -125,7 +125,11 @@
             <tr>
                 <th>#</th>
                 <th>Name</th>
-                <th>Type</th>
+                <th>atk</th>
+                <th>def</th>                
+                <th>hp</th>
+                <th>region</th>
+                <th>  </th>
             </tr>
             <?php
                 // ******** update your personal settings ******** 
