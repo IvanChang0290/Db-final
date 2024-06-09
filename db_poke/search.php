@@ -74,7 +74,11 @@
     <h1>Pokémon Search Results</h1>
     
     <div class="button-container">
-        <button onclick="window.location.href='display.php'">返回</button>
+        <?php
+            session_start();
+            $U_ID = $_SESSION['U_ID'];
+        ?>
+        <button onclick="window.location.href='display.php?U_ID=<?php echo $U_ID ?>'">返回</button>
     </div>
 
     <div class="table-container">
@@ -182,7 +186,11 @@
     </div>
 
     <div class="button-container">
-        <button onclick="window.location.href='display.php'">返回</button>
+        <?php
+            session_start();
+            $U_ID = $_SESSION['U_ID'];
+        ?>
+        <button onclick="window.location.href='display.php?U_ID=<?php echo $U_ID?>'">返回</button>
     </div>
 
 </body>
