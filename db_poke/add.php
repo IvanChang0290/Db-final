@@ -20,11 +20,17 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
         }
-        .form-container input[type="text"],
-        .form-container input[type="submit"] {
+        .form-container input[type="text"] {
             width: 90%;
             padding: 10px;
             margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-container input[type="submit"] {
+            width: 90%;
+            padding: 10px;
+            margin: 0 auto;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
@@ -41,11 +47,13 @@
 <body>
 
 <div class="form-container">
-    <h2>Add Pokémon</h2>
+    <h2>Add Pokémon Skills</h2>
     <form action="add.php" method="post">
-        <input type="text" name="P_ID" placeholder="ID" required>
-        <input type="text" name="Skill" placeholder="Skill" required>
-        <input type="submit" value="Add Pokémon">
+        <input type="text" name="P_ID" placeholder="Pokémon ID" required>
+        <input type="text" name="Skill_1" placeholder="Skill 1" required>
+        <input type="text" name="Skill_2" placeholder="Skill 2" required>
+        <input type="text" name="Skill_3" placeholder="Skill 3" required>
+        <input type="submit" value="Add Skills">
     </form>
 </div>
 
@@ -62,28 +70,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $P_ID = $_POST['P_ID'];
-    $Skill = $_POST['Skill'];
+    $Skill_1 = $_POST['Skill_1'];
+    $Skill_2 = $_POST['Skill_2'];
+    $Skill_3 = $_POST['Skill_3'];
 
-    // Retrieve Name, Type, and Region based on P_ID
-    $sql = "SELECT Name, Type, Region FROM pokemon WHERE P_ID = '$P_ID'";
-    $result = $conn->query($sql);
+    // Check the number of skills the Pokémon already has
+    $check_skills_sql = "SELECT COUNT(*) as skill_count FROM have WHERE P_ID = '$P_ID'";
+    $check_result = $conn->query($check_skills_sql);
+    $skill_count_row = $check_result->fetch_assoc();
+    $skill_count = $skill_count_row['skill_count'];
 
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $Name = $row['Name'];
-        $Type = $row['Type'];
-        $Region = $row['Region'];
-
-        // Insert new record into the 'have' table
-        $insert_sql = "INSERT INTO have (P_ID, Name, Type, Region, Skill) VALUES ('$P_ID', '$Name', '$Type', '$Region', '$Skill')";
-
-        if ($conn->query($insert_sql) === TRUE) {
-            echo "New record created successfully";
-        } else {
-            echo "Error: " . $insert_sql . "<br>" . $conn->error;
-        }
+    if ($skill_count >= 3) {
+        echo "This Pokémon already has 3 skills. You cannot add more.";
     } else {
-        echo "No Pokémon found with ID: " . $P_ID;
+        // Retrieve Name, Type, and Region based on P_ID
+        $sql = "SELECT Name, Type, Region FROM pokemon WHERE P_ID = '$P_ID'";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $Name = $row['Name'];
+            $Type = $row['Type'];
+            $Region = $row['Region'];
+
+            // Insert new record into the 'have' table
+            if ($skill_count == 0) {
+                $insert_sql = "INSERT INTO have (P_ID, Skill_1, Skill_2, Skill_3) VALUES ('$P_ID', '$Skill_1', '$Skill_2', '$Skill_3')";
+            } elseif ($skill_count == 1) {
+                $insert_sql = "UPDATE have SET Skill_2 = '$Skill_2', Skill_3 = '$Skill_3' WHERE P_ID = '$P_ID'";
+            } elseif ($skill_count == 2) {
+                $insert_sql = "UPDATE have SET Skill_3 = '$Skill_3' WHERE P_ID = '$P_ID'";
+            }
+
+            if ($conn->query($insert_sql) === TRUE) {
+                echo "Skills added successfully.";
+            } else {
+                echo "Error: " . $insert_sql . "<br>" . $conn->error;
+            }
+        } else {
+            echo "No Pokémon found with ID: " . $P_ID;
+        }
     }
 
     $conn->close();
@@ -92,4 +118,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 </body>
 </html>
-
