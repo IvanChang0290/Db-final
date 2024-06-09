@@ -13,38 +13,61 @@
             padding: 0;
         }
         .info-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+            width: 800px;
+            margin: 20px auto;
             padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ccc;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            display: flex; /* Add this line */
+            align-items: center; /* Add this line */
         }
         .info-container img {
-            max-width: 150px;
+            width: 20%;
             border-radius: 8px;
         }
-        .info-container table {
+        .info-container .table1 {
             border-collapse: collapse;
-            width: 100%;
+            width: 40%;
             margin-left: 20px;
+            margin-top: 10px;
+            align-items: top; /* Add this line */
         }
-        .info-container th, .info-container td {
+        .info-container .table1 th, .info-container .table1 td {
             text-align: left;
             padding: 8px;
         }
-        .info-container th {
+        .info-container .table1 th {
             background-color: #f2f2f2;
+            width: 30%;
+        }
+        .info-container .table1 td {
+            width: 70%;
+        }
+        .info-container .table2 {
+            border-collapse: collapse;
+            width: 40%;
+            margin-left: 20px;
+            margin-top: 10px;
+            align-items: top; /* Add this line */
+        }
+        .info-container .table2 th, .info-container .table2 td {
+            text-align: left;
+            padding: 8px;
+        }
+        .info-container .table2 th {
+            background-color: #f2f2f2;
+            width: 30%;
+        }
+        .info-container .table2 td {
+            width: 70%;
         }
     </style>
 </head>
 <body>
 
 <div class="info-container">
-    <table>
     <?php
                 // ******** update your personal settings ******** 
                 $servername = "localhost";
@@ -68,9 +91,11 @@
 
                 $U_ID = $_GET['U_ID'];
                 $P_ID = $_GET['P_ID'];
+                
                 $img_path = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{$P_ID}.png";
                 echo "<img src={$img_path}>";
-            
+                echo "<table class='table1'>";
+
                 $sql = "SELECT DISTINCT
                             Have.P_ID AS P_ID, 
                             Pokemon.Name AS P_Name, 
@@ -88,23 +113,51 @@
                             Have.B_ID = '$U_ID'AND Have.P_ID = '$P_ID'";
 
                 $result = $conn->query($sql);  
-
+                $regin = '';  
                 if ($result->num_rows > 0) {    
                     while($row = $result->fetch_assoc()) {
-
-                        echo "<tr><th>Name</th><td>" . $row["P_ID"]. "</td></tr>";
+                        echo "<tr><th>P_ID</th><td>" . $row["P_ID"]. "</td></tr>";
                         echo "<tr><th>Name</th><td>" . $row["P_Name"]. "</td></tr>";
-                        echo "<tr><th>Name</th><td>" . $row["P_ATK"]. "</td></tr>";
-                        echo "<tr><th>Name</th><td>" . $row["P_DEF"]. "</td></tr>";
-                        echo "<tr><th>Name</th><td>" . $row["P_HP"]. "</td></tr>";
-                        echo "<tr><th>Name</th><td>" . $row["R_Name"]. "</td></tr>";
+                        echo "<tr><th>ATK</th><td>" . $row["P_ATK"]. "</td></tr>";
+                        echo "<tr><th>DEF</th><td>" . $row["P_DEF"]. "</td></tr>";
+                        echo "<tr><th>HP</th><td>" . $row["P_HP"]. "</td></tr>";
+                        $regin = $row["R_Name"];
                     }
                 } else {
                     echo "<tr><td colspan='4'>0 results</td></tr>";
                 }
+                echo "</table>";
+
+                echo "<table class='table2'>";
+
+                $sql = "SELECT DISTINCT
+                            Skill.Name AS S_Name, 
+                        FROM 
+                            Have
+                        JOIN 
+                            Pokemon ON Have.P_ID = Pokemon.P_ID
+                        JOIN 
+                            Skill ON Have.S_ID = Skill.S_ID
+                        WHERE 
+                            Have.B_ID = '$U_ID'AND Have.P_ID = '$P_ID'";
+
+                echo "<tr><th>Regin</th><td>" . $regin. "</td></tr>";
+                $result = $conn->query($sql);  
+
+                if ($result->num_rows > 0) {    
+                    while($row = $result->fetch_assoc()) {
+                        echo "<tr><th>Skill</th><td>" . $row["S_Name"]. "</td></tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='4'>0 results</td></tr>";
+                }
+                echo "</table>";
+
+
                 $conn->close();
+
             ?>
-    </table>
+
 </div>
 
 </body>
