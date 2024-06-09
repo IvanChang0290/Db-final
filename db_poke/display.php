@@ -176,7 +176,7 @@
                                   <td>" . $row["P_DEF"]. "</td>
                                   <td>" . $row["P_HP"]. "</td>
                                   <td>" . $row["R_Name"]. "</td>
-                                  <td><a href='update.php?id=" . $row["P_ID"] . "'>詳細資料</a></td>
+                                  <td><a href='info.php?U_ID=" . $row["U_ID"] . "&P_ID=" . $row["P_ID"] . "'>詳細資料</a></td>
                                   </tr>";
                     }
                 } else {
