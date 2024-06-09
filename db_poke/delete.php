@@ -20,9 +20,10 @@ if ($conn->connect_error) {
 } 
 
 $P_ID = $_GET["P_ID"];
+$B_ID = $_GET["B_ID"];
 
 if (isset($ISBN)) {
-    $delete_sql = "DELETE FROM have WHERE P_ID = '$P_ID';"; // TODO 
+    $delete_sql = "DELETE FROM have WHERE P_ID = '$P_ID' and B_ID = '$B_ID';"; // TODO 
 
 	if ($conn->query($delete_sql) === TRUE) {
         // echo "刪除成功!<a href='main.php'>返回主頁</a>";
