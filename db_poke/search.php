@@ -136,12 +136,12 @@
                     while($row = $result->fetch_assoc()) {
                         echo "<tr>
                                 <td>" . $row["P_ID"]. "</td>
-                                <td>" . $row["PokemonName"]. "</td>
+                                <td>" . $row["P_Name"]. "</td>
                                 <td>" . $row["P_Type"]. "</td>
-                                <td>" . $row["HP"]. "</td>
-                                <td>" . $row["ATK"]. "</td>
-                                <td>" . $row["DEF"]. "</td>
-                                <td>" . $row["RegionName"]. "</td>
+                                <td>" . $row["P_HP"]. "</td>
+                                <td>" . $row["P_ATK"]. "</td>
+                                <td>" . $row["P_DEF"]. "</td>
+                                <td>" . $row["R_Name"]. "</td>
                               </tr>";
                     }
                 } else {
