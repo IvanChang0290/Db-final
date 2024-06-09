@@ -117,9 +117,7 @@
         ?>
         <button onclick="location.href='add.php?U_ID=<?php echo $_GET['U_ID'] ?>'">新增 Pokémon</button>
     </div>
-
-    <form action="add.php?U_ID=<?php echo urlencode($_GET['U_ID']); ?>" method="post">
-    </form>
+    
     <div class="table-container">
         <table>
             <tr>
