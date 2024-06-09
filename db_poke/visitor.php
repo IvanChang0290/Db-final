@@ -151,7 +151,7 @@
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 } 
-                
+                $U_ID='0';
                 // $sql = "SELECT P_ID,S_ID FROM Have WHERE B_ID = '$U_ID'";
                 $sql = "SELECT DISTINCT
                             Have.P_ID AS P_ID, 
