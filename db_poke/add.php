@@ -95,13 +95,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "This Pokémon already has 3 skills. You cannot add more.";
     } else {
             // Insert new record into the 'have' table
+            $fail = 0;
             if ($skill_count == 2) {
                 if(!empty($Skill_1)){
                     $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$U_ID','$P_ID','$Skill_1')";
                     if ($conn->query($insert_sql) === TRUE) {
                         echo "Skills added successfully.";
+                        
                     } else {
                         echo "Error: " . $insert_sql . "<br>" . $conn->error;
+                        $fail = 1;
                     }
                 }
             } elseif ($skill_count == 1) {
@@ -111,6 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "Skills added successfully.";
                     } else {
                         echo "Error: " . $insert_sql . "<br>" . $conn->error;
+                        $fail = 1;
                     }
                 }
                 if(!empty($Skill_2)){
@@ -119,6 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "Skills added successfully.";
                     } else {
                         echo "Error: " . $insert_sql . "<br>" . $conn->error;
+                        $fail = 1;
                     }
                 }
             } elseif ($skill_count == 0) {
@@ -128,6 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "Skills added successfully.";
                     } else {
                         echo "Error: " . $insert_sql . "<br>" . $conn->error;
+                        $fail = 1;
                     }
                 }
                 if(!empty($Skill_2)){
@@ -136,6 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "Skills added successfully.";
                     } else {
                         echo "Error: " . $insert_sql . "<br>" . $conn->error;
+                        $fail = 1;
                     }
                 }
                 if(!empty($Skill_3)){
@@ -144,10 +151,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "Skills added successfully.";
                     } else {
                         echo "Error: " . $insert_sql . "<br>" . $conn->error;
+                        $fail = 1;
                     }
                 }
             }
-
+            
+            if($fail == 0)
+            {
+                //session_start();
+                //$_SESSION['U_ID'] = $U_ID;
+                header('Location: display.php?U_ID='.$U_ID);
+		        exit;
+            }
             
         }
 
