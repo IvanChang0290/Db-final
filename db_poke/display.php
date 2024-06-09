@@ -117,10 +117,13 @@
     <div class="table-container">
         <table>
             <tr>
-                <th>#</th>
+                <th>P_ID</th>
                 <th>Name</th>
-                <th>修改</th>
-                <th>刪除</th>
+                <th>atk</th>
+                <th>def</th>                
+                <th>hp</th>
+                <th>region</th>
+                <th>  </th>
             </tr>
             
             <?php
@@ -145,17 +148,35 @@
                 } 
 
                 $U_ID = $_GET['U_ID'];
-                $sql = "SELECT P_ID,S_ID FROM Have WHERE B_ID = '$U_ID'";
+                // $sql = "SELECT P_ID,S_ID FROM Have WHERE B_ID = '$U_ID'";
+                $sql = "SELECT 
+                            Have.P_ID AS P_ID, 
+                            Pokemon.Name AS P_Name, 
+                            Pokemon.ATK AS P_ATK, 
+                            Pokemon.DEF AS P_DEF,
+                            Pokemon.HP AS P_HP, 
+                            Region.Name AS R_Name, 
+                        FROM 
+                            Have
+                        JOIN 
+                            Pokemon ON Have.P_ID = Pokemon.P_ID
+                        JOIN 
+                            Region ON Pokemon.R_ID = Region.R_ID
+                        WHERE 
+                            Have.B_ID = '$U_ID'";
 
                 $result = $conn->query($sql);  
 
                 if ($result->num_rows > 0) {    
-                    
                     while($row = $result->fetch_assoc()) {
+
                         echo "<tr><td>" . $row["P_ID"]. "</td>
-                                  <td>" . $row["S_ID"]. "</td>
-                                  <td><a href='update.php?id=" . $row["P_ID"] . "'>修改</a></td>
-							      <td><a href='delete.php?id=" . $row["P_ID"] . "'>刪除</a></td>
+                                  <td>" . $row["P_Name"]. "</td>
+                                  <td>" . $row["P_ATK"]. "</td>
+                                  <td>" . $row["P_DEF"]. "</td>
+                                  <td>" . $row["P_HP"]. "</td>
+                                  <td>" . $row["R_Name"]. "</td>
+                                  <td><a href='update.php?id=" . $row["P_ID"] . "'>詳細資料</a></td>
                                   </tr>";
                     }
                 } else {
