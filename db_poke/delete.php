@@ -28,7 +28,7 @@ if (isset($P_ID) && isset($U_ID)) {
 	if ($conn->query($delete_sql) === TRUE) {
         // echo "刪除成功!<a href='main.php'>返回主頁</a>";
         // 重定向用戶到下一頁
-		header('Location: dislpay.php');
+		header('Location: display.php');
 		exit;
     }else{
         echo "刪除失敗!";
