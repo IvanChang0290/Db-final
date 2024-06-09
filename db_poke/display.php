@@ -149,7 +149,7 @@
 
                 $U_ID = $_GET['U_ID'];
                 // $sql = "SELECT P_ID,S_ID FROM Have WHERE B_ID = '$U_ID'";
-                $sql = "SELECT 
+                $sql = "SELECT DISTINCT
                             Have.P_ID AS P_ID, 
                             Pokemon.Name AS P_Name, 
                             Pokemon.ATK AS P_ATK, 
