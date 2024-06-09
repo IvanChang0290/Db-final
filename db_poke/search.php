@@ -145,7 +145,7 @@
                               </tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='8'>No results found</td></tr>";
+                    echo "<tr><td colspan='7'>No results found</td></tr>";
                 }
                 $conn->close();
             ?>
