@@ -73,10 +73,11 @@ with open('learn.csv', newline='',encoding="utf-8") as csvfile:
             number4 = [int(number4) for number4 in re.findall(r'-?\d+\.?\d*', a4)]
             arr4=str(number4[0])
 
-        query='INSERT INTO Learn(P_ID,S_ID) '+'VALUES('
-        new_data='"'+arr+'"'+','+'"'+arr2+'"'+')'+','
-        new_data2='('+'"'+arr+'"'+','+'"'+arr3+'"'+')'+','
-        new_data3='('+'"'+arr+'"'+','+'"'+arr4+'"'
+    
+        query='INSERT INTO Have(B_TD,P_ID,S_ID) '+'VALUES('
+        new_data='"'+'0'+'"'+'"'+arr+'"'+','+'"'+arr2+'"'+')'+','
+        new_data2='('+'"'+'0'+'"'+'"'+arr+'"'+','+'"'+arr3+'"'+')'+','
+        new_data3='('+'"'+'0'+'"'+'"'+arr+'"'+','+'"'+arr4+'"'
         end=');'
 
         new_query=query+new_data+new_data2+new_data3+end
