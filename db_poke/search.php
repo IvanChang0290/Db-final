@@ -99,7 +99,7 @@
                             Pokemon.ATK AS P_ATK, 
                             Pokemon.DEF AS P_DEF,
                             Pokemon.HP AS P_HP, 
-                            Region.Name AS R_Name
+                            Region.Name AS R_Name,
                             Pokemon_Type.Type AS P_type 
                         FROM 
                             Have
