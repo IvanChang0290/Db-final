@@ -63,6 +63,19 @@
         .info-container .table2 td {
             width: 70%;
         }
+        .back-button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .back-button-container button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -179,7 +192,14 @@
                 $conn->close();
 
             ?>
+</div>
 
+<div class="back-button-container">
+        <?php 
+            session_start();
+            $_SESSION['U_ID'] = $_GET['U_ID'];
+        ?>
+        <button onclick="location.href='display.php?U_ID=<?php echo $_GET['U_ID'] ?>'">返回</button>
 </div>
 
 </body>
