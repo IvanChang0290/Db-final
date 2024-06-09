@@ -5,43 +5,116 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9ecef;
             color: #333;
             margin: 0;
             padding: 0;
         }
         h1 {
             text-align: center;
-            color: #333;
+            color: #007bff;
+            margin-top: 20px;
         }
         .container {
             width: 80%;
             margin: auto;
             overflow: hidden;
+            margin-top: 20px;
         }
-        table {
+        .table-container {
             width: 100%;
-            margin: 20px 0;
+            margin-top: 20px;
+        }
+        .table-container table {
+            width: 80%;
             border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
         }
         table, th, td {
-            border: 1px solid #ddd;
+            border: 1px solid #dee2e6;
         }
         th, td {
-            padding: 10px;
+            padding: 15px;
             text-align: left;
         }
         th {
-            background-color: #4CAF50;
+            background-color: #007bff;
             color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .search-container {
+            width: 100%;
+            text-align: center;
+            margin: 20px auto;
+        }
+        .search-container input[type="text"] {
+            width: 60%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .search-container select {
+            width: 20%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .search-container button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .add-button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .add-button-container button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
 
     <h1>Pokémon List</h1>
-    <div class="container">
+
+    <div class="search-container">
+        <h2>Search Pokémon</h2>
+        <form action="visitor.php" method="get">
+            <input type="text" id="search-query" name="search_query" placeholder="Search Pokémon...">
+            <select id="search-filter" name="search_filter">
+                <option value="id">ID</option>
+                <option value="name">Name</option>
+                <option value="type">Type</option>
+                <option value="region">Region</option>
+            </select>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <div class="add-button-container">
+        <button onclick="location.href='add.php'">新增 Pokémon</button>
+    </div>
+
+    <div class="table-container">
         <table>
             <tr>
                 <th>#</th>
@@ -71,10 +144,26 @@
                     die("Connection failed: " . $conn->connect_error);
                 } 
 
-                $U_ID = $_GET['U_ID'];
-
                 // SQL query to get Pokémon data
                 $sql = "SELECT * FROM pokemon";  // Ensure this matches your database schema
+                if(isset($_GET['search_query']) && isset($_GET['search_filter'])) {
+                    $search_query = $_GET['search_query'];
+                    $search_filter = $_GET['search_filter'];
+                    switch ($search_filter) {
+                        case 'id':
+                            $sql .= " WHERE P_ID LIKE '%$search_query%'";
+                            break;
+                        case 'name':
+                            $sql .= " WHERE Name LIKE '%$search_query%'";
+                            break;
+                        case 'type':
+                            $sql .= " WHERE Type LIKE '%$search_query%'";
+                            break;
+                        case 'region':
+                            $sql .= " WHERE Region LIKE '%$search_query%'";
+                            break;
+                    }
+                }
                 $result = $conn->query($sql);  // Send SQL Query
 
                 if ($result->num_rows > 0) {    
@@ -82,18 +171,18 @@
                     while($row = $result->fetch_assoc()) {
                         echo "<tr><td>" . $row["P_ID"]. "</td>
                                   <td>" . $row["Name"]. "</td>
-                                  <td><a href='update.php?id=" . $row["ISBN"] . "'>修改</a></td>
-							      <td><a href='delete.php?id=" . $row["ISBN"] . "'>刪除</a></td>
+                                  <td><a href='update.php?id=" . $row["P_ID"] . "'>修改</a></td>
+							      <td><a href='delete.php?id=" . $row["P_ID"] . "'>刪除</a></td>
                                   </tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='3'>0 results</td></tr>";
+                    echo "<tr><td colspan='4'>0 results</td></tr>";
                 }
                 $conn->close();
             ?>
             
         </table>
     </div>
-    
+
 </body>
 </html>
