@@ -144,33 +144,16 @@
                     die("Connection failed: " . $conn->connect_error);
                 } 
 
-                // SQL query to get Pokémon data
-                $sql = "SELECT * FROM pokemon";  // Ensure this matches your database schema
-                if(isset($_GET['search_query']) && isset($_GET['search_filter'])) {
-                    $search_query = $_GET['search_query'];
-                    $search_filter = $_GET['search_filter'];
-                    switch ($search_filter) {
-                        case 'id':
-                            $sql .= " WHERE P_ID LIKE '%$search_query%'";
-                            break;
-                        case 'name':
-                            $sql .= " WHERE Name LIKE '%$search_query%'";
-                            break;
-                        case 'type':
-                            $sql .= " WHERE Type LIKE '%$search_query%'";
-                            break;
-                        case 'region':
-                            $sql .= " WHERE Region LIKE '%$search_query%'";
-                            break;
-                    }
-                }
-                $result = $conn->query($sql);  // Send SQL Query
+                $U_ID = $_GET['U_ID'];
+                $sql = "SELECT P_ID,S_ID FROM Have WHERE B_ID = '$U_ID'";
+
+                $result = $conn->query($sql);  
 
                 if ($result->num_rows > 0) {    
                     
                     while($row = $result->fetch_assoc()) {
                         echo "<tr><td>" . $row["P_ID"]. "</td>
-                                  <td>" . $row["Name"]. "</td>
+                                  <td>" . $row["S_ID"]. "</td>
                                   <td><a href='update.php?id=" . $row["P_ID"] . "'>修改</a></td>
 							      <td><a href='delete.php?id=" . $row["P_ID"] . "'>刪除</a></td>
                                   </tr>";
