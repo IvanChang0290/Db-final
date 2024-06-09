@@ -87,7 +87,7 @@
                 <th>ATK</th>
                 <th>DEF</th>
                 <th>Region</th>
-                <th>Skill</th>
+                <th>  </th>
             </tr>
             <?php
                 // ******** update your personal settings ******** 
