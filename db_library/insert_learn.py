@@ -74,14 +74,21 @@ with open('learn.csv', newline='',encoding="utf-8") as csvfile:
             arr4=str(number4[0])
 
     
-        query='INSERT INTO Have(B_TD,P_ID,S_ID) '+'VALUES('
-        new_data='"'+'0'+'"'+'"'+arr+'"'+','+'"'+arr2+'"'+')'+','
-        new_data2='('+'"'+'0'+'"'+'"'+arr+'"'+','+'"'+arr3+'"'+')'+','
-        new_data3='('+'"'+'0'+'"'+'"'+arr+'"'+','+'"'+arr4+'"'
-        end=');'
-
-        new_query=query+new_data+new_data2+new_data3+end
-        #print(new_query)
+        query='INSERT INTO Have(B_ID,P_ID,S_ID) '+'VALUES('
+        
+        
+        if arr4 != "None":
+            new_data='"'+'0'+'"'+','+'"'+arr+'"'+','+'"'+arr2+'"'+')'+','
+            new_data2='('+'"'+'0'+'"'+','+'"'+arr+'"'+','+'"'+arr3+'"'+')'+','
+            new_data3='('+'"'+'0'+'"'+','+'"'+arr+'"'+','+'"'+arr4+'"'
+            end=');'
+            new_query=query+new_data+new_data2+new_data3+end
+        else:
+            new_data='"'+'0'+'"'+','+'"'+arr+'"'+','+'"'+arr2+'"'+')'+','
+            new_data2='('+'"'+'0'+'"'+','+'"'+arr+'"'+','+'"'+arr3+'"'+')'
+            end=';'
+            new_query=query+new_data+new_data2+end
+        print(new_query)
         i+=1
         #new_data=np.array([row[0],row[1],row[5],row[16],row[11],row[5],row[6],row[7]])
 
