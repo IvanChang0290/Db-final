@@ -98,6 +98,10 @@
 
     <div class="search-container">
         <h2>Search Pokémon</h2>
+        <?php 
+            session_start();
+            $_SESSION['U_ID'] = $_GET['U_ID'];
+        ?>
         <form action="visitor.php" method="get">
             <input type="text" id="search-query" name="search_query" placeholder="Search Pokémon...">
             <select id="search-filter" name="search_filter">
