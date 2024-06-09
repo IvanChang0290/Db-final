@@ -111,7 +111,11 @@
     </div>
 
     <div class="add-button-container">
-        <button onclick="location.href='add.php?U_ID=<?php echo urlencode($_GET['U_ID']); ?>'">新增 Pokémon</button>
+        <?php 
+            session_start();
+            $_SESSION['U_ID'] = $_GET['U_ID'];
+        ?>
+        <button onclick="location.href='add.php?U_ID=<?php echo $_GET['U_ID'] ?>'">新增 Pokémon</button>
     </div>
 
     <form action="add.php?U_ID=<?php echo urlencode($_GET['U_ID']); ?>" method="post">
@@ -178,7 +182,7 @@
                                   <td>" . $row["P_DEF"]. "</td>
                                   <td>" . $row["P_HP"]. "</td>
                                   <td>" . $row["R_Name"]. "</td>
-                                  <td><a href='update.php?id=" . $row["P_ID"] . "'>詳細資料</a></td>
+                                  <td><a href='info.php?U_ID=" . $row["U_ID"] . "&P_ID=" . $row["P_ID"] . "'>詳細資料</a></td>
                                   </tr>";
                     }
                 } else {

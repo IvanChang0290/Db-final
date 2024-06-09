@@ -58,17 +58,21 @@
 </div>
 
 <?php
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $servername = "localhost";
     $username = "root";
     $password = "123456789";
     $dbname = "db_poke";
-
+    
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $B_ID = $_GET['U_ID'];
+    session_start();
+    $U_ID = $_SESSION['U_ID'];
+    echo "hi2 ".$U_ID ;
     $P_ID = $_POST['P_ID'];
     $Skill_1 = $_POST['Skill_1'];
     $Skill_2 = $_POST['Skill_2'];
@@ -82,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Check the number of skills the Pokémon already has
-    $check_skills_sql = "SELECT COUNT(*) as skill_count FROM have WHERE P_ID = '$P_ID' and B_ID = '$B_ID'";
+    $check_skills_sql = "SELECT COUNT(*) as skill_count FROM have WHERE P_ID = '$P_ID' and B_ID = '$U_ID'";
     $check_result = $conn->query($check_skills_sql);
     $skill_count_row = $check_result->fetch_assoc();
     $skill_count = $skill_count_row['skill_count'];
@@ -93,32 +97,58 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Insert new record into the 'have' table
             if ($skill_count == 2) {
                 if(!empty($Skill_1)){
-                    $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$B_ID','$P_ID','$Skill_1')";
+                    $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$U_ID','$P_ID','$Skill_1')";
+                    if ($conn->query($insert_sql) === TRUE) {
+                        echo "Skills added successfully.";
+                    } else {
+                        echo "Error: " . $insert_sql . "<br>" . $conn->error;
+                    }
                 }
             } elseif ($skill_count == 1) {
                 if(!empty($Skill_1)){
-                    $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$B_ID','$P_ID','$Skill_1')";
+                    $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$U_ID','$P_ID','$Skill_1')";
+                    if ($conn->query($insert_sql) === TRUE) {
+                        echo "Skills added successfully.";
+                    } else {
+                        echo "Error: " . $insert_sql . "<br>" . $conn->error;
+                    }
                 }
                 if(!empty($Skill_2)){
-                    $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$B_ID','$P_ID','$Skill_2')";
+                    $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$U_ID','$P_ID','$Skill_2')";
+                    if ($conn->query($insert_sql) === TRUE) {
+                        echo "Skills added successfully.";
+                    } else {
+                        echo "Error: " . $insert_sql . "<br>" . $conn->error;
+                    }
                 }
             } elseif ($skill_count == 0) {
                 if(!empty($Skill_1)){
-                    $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$B_ID','$P_ID','$Skill_1')";
+                    $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$U_ID','$P_ID','$Skill_1')";
+                    if ($conn->query($insert_sql) === TRUE) {
+                        echo "Skills added successfully.";
+                    } else {
+                        echo "Error: " . $insert_sql . "<br>" . $conn->error;
+                    }
                 }
                 if(!empty($Skill_2)){
-                    $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$B_ID','$P_ID','$Skill_2')";
+                    $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$U_ID','$P_ID','$Skill_2')";
+                    if ($conn->query($insert_sql) === TRUE) {
+                        echo "Skills added successfully.";
+                    } else {
+                        echo "Error: " . $insert_sql . "<br>" . $conn->error;
+                    }
                 }
                 if(!empty($Skill_3)){
-                    $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$B_ID','$P_ID','$Skill_3')";
+                    $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$U_ID','$P_ID','$Skill_3')";
+                    if ($conn->query($insert_sql) === TRUE) {
+                        echo "Skills added successfully.";
+                    } else {
+                        echo "Error: " . $insert_sql . "<br>" . $conn->error;
+                    }
                 }
             }
 
-            if ($conn->query($insert_sql) === TRUE) {
-                echo "Skills added successfully.";
-            } else {
-                echo "Error: " . $insert_sql . "<br>" . $conn->error;
-            }
+            
         }
 
     $conn->close();
