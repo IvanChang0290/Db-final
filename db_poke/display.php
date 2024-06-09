@@ -102,7 +102,7 @@
             session_start();
             $_SESSION['U_ID'] = $_GET['U_ID'];
         ?>
-        <form action="visitor.php" method="get">
+        <form action="search.php" method="get">
             <input type="text" id="search-query" name="search_query" placeholder="Search Pokémon...">
             <select id="search-filter" name="search_filter">
                 <option value="id">ID</option>
