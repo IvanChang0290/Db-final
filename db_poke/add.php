@@ -98,12 +98,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $Region = $row['Region'];
 
             // Insert new record into the 'have' table
-            if ($skill_count == 0) {
-                $insert_sql = "INSERT INTO have (P_ID, Skill_1, Skill_2, Skill_3) VALUES ('$P_ID', '$Skill_1', '$Skill_2', '$Skill_3')";
+            if ($skill_count == 2) {
+                if(!empty($Skill_1)){
+                    $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$B_ID','$P_ID','$Skill_1')";
+                }
+                if(!empty($Skill_2)){
+                    $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$B_ID','$P_ID','$Skill_2')";
+                }
+                if(!empty($Skill_3)){
+                    $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$B_ID','$P_ID','$Skill_3')";
+                }
             } elseif ($skill_count == 1) {
-                $insert_sql = "UPDATE have SET Skill_2 = '$Skill_2', Skill_3 = '$Skill_3' WHERE P_ID = '$P_ID'";
-            } elseif ($skill_count == 2) {
-                $insert_sql = "UPDATE have SET Skill_3 = '$Skill_3' WHERE P_ID = '$P_ID'";
+                if(!empty($Skill_1)){
+                    $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$B_ID','$P_ID','$Skill_1')";
+                }
+                if(!empty($Skill_2)){
+                    $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$B_ID','$P_ID','$Skill_2')";
+                }
+                if(!empty($Skill_3)){
+                    $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$B_ID','$P_ID','$Skill_3')";
+                }
+            } elseif ($skill_count == 0) {
+                if(!empty($Skill_1)){
+                    $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$B_ID','$P_ID','$Skill_1')";
+                }
+                if(!empty($Skill_2)){
+                    $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$B_ID','$P_ID','$Skill_2')";
+                }
+                if(!empty($Skill_3)){
+                    $insert_sql =" INSERT INTO have (B_ID,P_ID,S_ID) VALUES ('$B_ID','$P_ID','$Skill_3')";
+                }
             }
 
             if ($conn->query($insert_sql) === TRUE) {
