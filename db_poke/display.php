@@ -128,6 +128,7 @@
                 <th>hp</th>
                 <th>region</th>
                 <th>  </th>
+                <th>  </th>
             </tr>
             
             <?php
