@@ -80,7 +80,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $check_result = $conn->query($check_pokemon_sql);
     if ($check_result->num_rows == 0) {
     echo "This Pokémon ID does not exist. Please enter a valid Pokémon ID.";
-    exit(); // 終止腳本的執行
     }
 
     // Check the number of skills the Pokémon already has
