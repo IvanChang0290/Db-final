@@ -129,7 +129,7 @@
                 echo "</table>";
                 echo "<table class='table2'>";
 
-                $sql = "SELECT 
+                $sql = "SELECT DISTINCT
                             Pokemon_Type.Type AS P_Type 
                         FROM 
                             Have
