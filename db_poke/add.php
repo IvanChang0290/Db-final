@@ -91,12 +91,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($skill_count >= 3) {
         echo "This Pokémon already has 3 skills. You cannot add more.";
     } else {
-        // Retrieve Name, Type, and Region based on P_ID
-            $row = $result->fetch_assoc();
-            $Name = $row['Name'];
-            $Type = $row['Type'];
-            $Region = $row['Region'];
-
             // Insert new record into the 'have' table
             if ($skill_count == 2) {
                 if(!empty($Skill_1)){
