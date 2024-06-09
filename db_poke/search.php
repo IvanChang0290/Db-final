@@ -93,12 +93,21 @@
                 $search_filter = $_GET['search_filter'];
 
                 // SQL query to get Pokémon data based on search
-                $sql = "SELECT p.P_ID, p.Name as PokemonName, p.Type, p.HP, p.ATK, p.DEF, r.Name as RegionName, s.Name as SkillName 
-                        FROM have h 
-                        JOIN pokemon p ON h.P_ID = p.P_ID 
-                        JOIN region r ON p.R_ID = r.R_ID 
-                        JOIN skill s ON h.S_ID = s.S_ID 
-                        WHERE h.B_ID = '0' AND ";
+                $sql = "SELECT DISTINCT
+                            Have.P_ID AS P_ID, 
+                            Pokemon.Name AS P_Name, 
+                            Pokemon.ATK AS P_ATK, 
+                            Pokemon.DEF AS P_DEF,
+                            Pokemon.HP AS P_HP, 
+                            Region.Name AS R_Name 
+                        FROM 
+                            Have
+                        JOIN 
+                            Pokemon ON Have.P_ID = Pokemon.P_ID
+                        JOIN 
+                            Region ON Pokemon.R_ID = Region.R_ID
+                        WHERE 
+                            Have.B_ID = '$U_ID'";
 
                 switch ($search_filter) {
                     case 'id':
