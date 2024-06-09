@@ -110,7 +110,7 @@
                         JOIN 
                             Region ON Pokemon.R_ID = Region.R_ID
                         WHERE 
-                            Have.B_ID = '$U_ID' and";
+                            Have.B_ID = '$U_ID' and ";
 
                 switch ($search_filter) {
                     case 'id':
