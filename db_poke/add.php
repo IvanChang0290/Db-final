@@ -75,6 +75,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $Skill_2 = $_POST['Skill_2'];
     $Skill_3 = $_POST['Skill_3'];
 
+
+    $check_result = $conn->query($check_pokemon_sql);
+    $check_skills_sql = "SELECT P_ID FROM pokemon WHERE P_ID = '$P_ID'";
+    if ($check_result->num_rows == 0) {
+    echo "This Pokémon ID does not exist. Please enter a valid Pokémon ID.";
+    exit(); // 終止腳本的執行
+    }
+    
     // Check the number of skills the Pokémon already has
     $check_skills_sql = "SELECT COUNT(*) as skill_count FROM have WHERE P_ID = '$P_ID' and B_ID = '$B_ID'";
     $check_result = $conn->query($check_skills_sql);
@@ -85,10 +93,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "This Pokémon already has 3 skills. You cannot add more.";
     } else {
         // Retrieve Name, Type, and Region based on P_ID
-        $sql = "SELECT Name, Type, Region FROM pokemon WHERE P_ID = '$P_ID'";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $Name = $row['Name'];
             $Type = $row['Type'];
@@ -108,10 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             } else {
                 echo "Error: " . $insert_sql . "<br>" . $conn->error;
             }
-        } else {
-            echo "No Pokémon found with ID: " . $P_ID;
         }
-    }
 
     $conn->close();
 }
