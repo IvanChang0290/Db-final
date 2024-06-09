@@ -86,7 +86,24 @@
                 $search_filter = $_GET['search_filter'];
 
                 // SQL query to get Pokémon data based on search
-                $sql = "SELECT * FROM pokemon WHERE $search_filter LIKE '%$search_query%'";
+                $sql = "SELECT * FROM pokemon WHERE ";
+
+                    switch ($search_filter) {
+                    case 'id':
+                    $sql .= "P_ID LIKE '%$search_query%'";
+                    break;
+                    case 'name':
+                    $sql .= "Name LIKE '%$search_query%'";
+                    break;
+                    case 'type':
+                    $sql .= "Type LIKE '%$search_query%'";
+                    break;
+                    case 'region':
+                    $sql .= "Region LIKE '%$search_query%'";
+                    break;
+                    default:
+                    $sql .= "1"; // Default case to prevent SQL errors, although it shouldn't happen.
+                }
                 $result = $conn->query($sql);  // Send SQL Query
 
                 if ($result->num_rows > 0) {    
