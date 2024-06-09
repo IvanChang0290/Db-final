@@ -51,11 +51,31 @@
             color: red;
             text-align: center;
         }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button-container button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
 
     <h1>Pokémon Search Results</h1>
+    
+    <div class="button-container">
+        <button onclick="window.location.href='display.php'">返回</button>
+    </div>
 
     <div class="table-container">
         <table>
@@ -148,6 +168,7 @@
                                     <td>" . $row["P_ATK"]. "</td>
                                     <td>" . $row["P_DEF"]. "</td>
                                     <td>" . $row["R_Name"]. "</td>
+                                    <td><a href='info.php?U_ID=" . $U_ID . "&P_ID=" . $row["P_ID"] . "'>詳細資料</a></td>
                                   </tr>";
                         }
                     } else {
@@ -158,6 +179,10 @@
             ?>
             
         </table>
+    </div>
+
+    <div class="button-container">
+        <button onclick="window.location.href='display.php'">返回</button>
     </div>
 
 </body>
