@@ -131,7 +131,7 @@
                 echo "<table class='table2'>";
 
                 $sql = "SELECT DISTINCT
-                            Skill.Name AS S_Name, 
+                            Skill.Name AS S_Name
                         FROM 
                             Skill
                         JOIN 
