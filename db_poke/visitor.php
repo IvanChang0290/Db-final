@@ -47,80 +47,6 @@
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
-        .form-container {
-            width: 300px;
-            margin: 20px auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-        .form-container input[type="text"],
-        .form-container input[type="password"],
-        .form-container input[type="email"],
-        .form-container input[type="date_of_birth"],
-        .form-container input[type="country"],
-        .form-container input[type="game_ID"] {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-            border-radius: 5px;
-        }
-        .form-container button {
-            background-color: #007bff;
-            color: white;
-            padding: 15px;
-            margin: 10px 0;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .form-container .toggle-link {
-            display: block;
-            text-align: center;
-            margin: 10px 0;
-            color: #007bff;
-            cursor: pointer;
-        }
-        .form-container .visitor-link {
-            display: block;
-            text-align: center;
-            margin: 10px 0;
-            color: #007bff;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .form-container button:hover {
-            background-color: #0056b3;
-        }
-        .form-container .toggle-link:hover,
-        .form-container .visitor-link:hover {
-            text-decoration: underline;
-        }
-        .pokemon-img {
-            width: 70px;
-            height: auto;
-            display: block;
-            margin: 20px auto;
-        }
-        .form-container img {
-            display: block;
-            margin: 0 auto 20px;
-            width: 70px;
-        }
-        .header-images {
-            text-align: center;
-        }
-        .header-images img {
-            width: 70px;
-            height: auto;
-            margin: 0 10px;
-        }
         .search-container {
             width: 100%;
             text-align: center;
@@ -151,6 +77,25 @@
             border-radius: 5px;
             font-size: 16px;
         }
+        .search-container button:hover {
+            background-color: #0056b3;
+        }
+        .back-button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .back-button-container button {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .back-button-container button:hover {
+            background-color: #5a6268;
+        }
     </style>
 </head>
 <body>
@@ -159,7 +104,7 @@
 
     <div class="search-container">
         <h2>Search Pokémon</h2>
-        <form action="visitor.php" method="get">
+        <form action="search.php" method="get">
             <input type="text" id="search-query" name="search_query" placeholder="Search Pokémon...">
             <select id="search-filter" name="search_filter">
                 <option value="id">ID</option>
@@ -169,6 +114,10 @@
             </select>
             <button type="submit">Search</button>
         </form>
+    </div>
+
+    <div class="back-button-container">
+        <button onclick="window.history.back()">返回</button>
     </div>
 
     <div class="table-container">
@@ -199,21 +148,43 @@
                     die("Connection failed: " . $conn->connect_error);
                 } 
                 
-                // SQL query to get Pokémon data
-                $sql = "SELECT * FROM pokemon";  // Ensure this matches your database schema
-                $result = $conn->query($sql);  // Send SQL Query
+                $U_ID = $_GET['U_ID'];
+                // $sql = "SELECT P_ID,S_ID FROM Have WHERE B_ID = '$U_ID'";
+                $sql = "SELECT DISTINCT
+                            Have.P_ID AS P_ID, 
+                            Pokemon.Name AS P_Name, 
+                            Pokemon.ATK AS P_ATK, 
+                            Pokemon.DEF AS P_DEF,
+                            Pokemon.HP AS P_HP, 
+                            Region.Name AS R_Name 
+                        FROM 
+                            Have
+                        JOIN 
+                            Pokemon ON Have.P_ID = Pokemon.P_ID
+                        JOIN 
+                            Region ON Pokemon.R_ID = Region.R_ID
+                        WHERE 
+                            Have.B_ID = '$U_ID'";
+
+                $result = $conn->query($sql);  
 
                 if ($result->num_rows > 0) {    
-                    
                     while($row = $result->fetch_assoc()) {
-                        echo "<tr><td>" . $row["P_ID"]. "</td><td>" . $row["Name"]. "</td><td>" . $row["Type"]. "</td></tr>";
+
+                        echo "<tr><td>" . $row["P_ID"]. "</td>
+                                  <td>" . $row["P_Name"]. "</td>
+                                  <td>" . $row["P_ATK"]. "</td>
+                                  <td>" . $row["P_DEF"]. "</td>
+                                  <td>" . $row["P_HP"]. "</td>
+                                  <td>" . $row["R_Name"]. "</td>
+                                  <td><a href='info.php?U_ID=" . $U_ID . "&P_ID=" . $row["P_ID"] . "'>詳細資料</a></td>
+                                  </tr>";
                     }
                 } else {
                     echo "<tr><td colspan='3'>0 results</td></tr>";
                 }
                 $conn->close();
             ?>
-            
         </table>
     </div>
 
