@@ -76,13 +76,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $Skill_3 = $_POST['Skill_3'];
 
 
+    $check_pokemon_sql = "SELECT P_ID FROM pokemon WHERE P_ID = '$P_ID'";
     $check_result = $conn->query($check_pokemon_sql);
-    $check_skills_sql = "SELECT P_ID FROM pokemon WHERE P_ID = '$P_ID'";
     if ($check_result->num_rows == 0) {
     echo "This Pokémon ID does not exist. Please enter a valid Pokémon ID.";
     exit(); // 終止腳本的執行
     }
-    
+
     // Check the number of skills the Pokémon already has
     $check_skills_sql = "SELECT COUNT(*) as skill_count FROM have WHERE P_ID = '$P_ID' and B_ID = '$B_ID'";
     $check_result = $conn->query($check_skills_sql);
