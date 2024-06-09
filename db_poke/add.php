@@ -69,13 +69,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         die("Connection failed: " . $conn->connect_error);
     }
 
+    $B_ID = $_POST['B_ID'];
     $P_ID = $_POST['P_ID'];
     $Skill_1 = $_POST['Skill_1'];
     $Skill_2 = $_POST['Skill_2'];
     $Skill_3 = $_POST['Skill_3'];
 
     // Check the number of skills the Pokémon already has
-    $check_skills_sql = "SELECT COUNT(*) as skill_count FROM have WHERE P_ID = '$P_ID'";
+    $check_skills_sql = "SELECT COUNT(*) as skill_count FROM have WHERE P_ID = '$P_ID' and B_ID = '$B_ID'";
     $check_result = $conn->query($check_skills_sql);
     $skill_count_row = $check_result->fetch_assoc();
     $skill_count = $skill_count_row['skill_count'];
