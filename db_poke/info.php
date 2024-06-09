@@ -135,8 +135,6 @@
                         FROM 
                             Have
                         JOIN 
-                            Pokemon ON Have.P_ID = Pokemon.P_ID
-                        JOIN 
                             Skill ON Have.S_ID = Skill.S_ID
                         WHERE 
                             Have.B_ID = '$U_ID'AND Have.P_ID = '$P_ID'";
