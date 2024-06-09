@@ -86,6 +86,8 @@
                     die("Connection failed: " . $conn->connect_error);
                 } 
                 
+                session_start();
+                $U_ID = $_SESSION['U_ID'] ;
                 // Get search query and filter
                 $search_query = $_GET['search_query'];
                 $search_filter = $_GET['search_filter'];
