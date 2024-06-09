@@ -51,8 +51,8 @@
     <form action="add.php" method="post">
         <input type="text" name="P_ID" placeholder="Pokémon ID" required>
         <input type="text" name="Skill_1" placeholder="Skill 1" required>
-        <input type="text" name="Skill_2" placeholder="Skill 2" required>
-        <input type="text" name="Skill_3" placeholder="Skill 3" required>
+        <input type="text" name="Skill_2" placeholder="Skill 2" >
+        <input type="text" name="Skill_3" placeholder="Skill 3" >
         <input type="submit" value="Add Skills">
     </form>
 </div>
