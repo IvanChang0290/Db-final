@@ -117,7 +117,7 @@
         ?>
         <button onclick="location.href='add.php?U_ID=<?php echo $_GET['U_ID'] ?>'">新增 Pokémon</button>
     </div>
-    
+
     <div class="table-container">
         <table>
             <tr>
@@ -181,6 +181,7 @@
                                   <td>" . $row["P_HP"]. "</td>
                                   <td>" . $row["R_Name"]. "</td>
                                   <td><a href='info.php?U_ID=" . $U_ID . "&P_ID=" . $row["P_ID"] . "'>詳細資料</a></td>
+                                  <td><a href='delete.php?U_ID=" . $U_ID . "&P_ID=" . $row["P_ID"] . "'>刪除</a></td>
                                   </tr>";
                     }
                 } else {
