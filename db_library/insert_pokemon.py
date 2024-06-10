@@ -10,9 +10,13 @@ mydb = mysql.connector.connect(user='root', password='123456789',
                               database='db_poke')
 cursor = mydb.cursor()
 
+with open('pokemons_evo.csv', newline='',encoding="utf-8") as csvfile:
+    csv_data = csv.reader(csvfile)
+    next(csv_data) # skip first row
+    id_to_info = {row[0]: row[17] for row in csv_data if int(row[0]) <= 721}
 
 
-with open('pokemon_alopez247.csv', newline='',encoding="utf-8") as csvfile:
+with open('pokemons_evo.csv', newline='',encoding="utf-8") as csvfile:
 
     csv_data = csv.reader(csvfile)
 
@@ -29,7 +33,7 @@ with open('pokemon_alopez247.csv', newline='',encoding="utf-8") as csvfile:
         #new_data='\',\''.join(list)
 
         query='INSERT INTO Pokemon(P_ID,Name,info,Type,R_ID,HP,ATK,DEF) '+'VALUES('
-        new_data='"'+row[0]+'"'+','+'"'+row[1]+'"'+','+'"'+row[5]+'"'+','+'"'+row[16]+'"'+','+'"'+row[11]+'"'+','+'"'+row[5]+'"'+','+'"'+row[6]+'"'+','+'"'+row[7]+'"'
+        new_data='"'+row[0]+'"'+','+'"'+row[1]+'"'+','+'"'+id_to_info[row[0]]+'"'+','+'"'+row[16]+'"'+','+'"'+row[11]+'"'+','+'"'+row[5]+'"'+','+'"'+row[6]+'"'+','+'"'+row[7]+'"'
         end=');'
 
         new_query=query+new_data+end

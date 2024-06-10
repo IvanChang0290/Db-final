@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS Pokemon
 (
     P_ID VARCHAR(4),
     Name VARCHAR(50),
-    info VARCHAR(50),
+    info VARCHAR(255),
     Type VARCHAR(50),
     R_ID VARCHAR(3),
     HP VARCHAR(3),
