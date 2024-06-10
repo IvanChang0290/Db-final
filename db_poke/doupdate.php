@@ -20,9 +20,21 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-session_start();
-$B_ID = $_SESSION["B_ID"];
-$P_ID = $_SESSION["P_ID"];
+//session_start();
+$ID = $_GET['ID'];
+$sql = "SELECT U_ID FROM user WHERE password='$ID'";
+$result = $conn->query($sql);
+$U_ID = '';
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $U_ID = $row["U_ID"];
+}
+else
+{
+    echo "No such user";
+}
+$B_ID = $U_ID;
+$P_ID = $_POST["P_ID"];
 $skill1 = $_POST['skill1'];
 $skill2 = $_POST['skill2'];
 $skill3 = $_POST['skill3'];
