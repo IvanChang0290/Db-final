@@ -72,11 +72,6 @@
 <body>
 
     <h1>Pokémon Search Results</h1>
-    
-    <div class="button-container">
-
-        <button onclick="window.location.href='visitor.php'">返回</button>
-    </div>
 
     <div class="table-container">
         <table>
