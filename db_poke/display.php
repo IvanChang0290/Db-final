@@ -91,8 +91,9 @@
             font-size: 16px;
         }
         .logout-container {
-            text-align: center;
-            margin: 20px 0;
+            position: absolute;
+            top: 20px;
+            right: 20px;
         }
         .logout-container button {
             background-color: #dc3545;
@@ -109,6 +110,12 @@
     </style>
 </head>
 <body>
+
+    <div class="logout-container">
+        <form action="logout.php" method="post">
+            <button type="submit">登出</button>
+        </form>
+    </div>
 
     <h1>Pokémon List</h1>
 
@@ -220,12 +227,6 @@
             ?>
             
         </table>
-    </div>
-
-    <div class="logout-container">
-        <form action="logout.php" method="post">
-            <button type="submit">登出</button>
-        </form>
     </div>
 
 </body>
