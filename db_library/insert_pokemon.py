@@ -16,7 +16,7 @@ with open('pokemons_evo.csv', newline='',encoding="utf-8") as csvfile:
     id_to_info = {info[0]: info[17] for info in csv_data if int(info[0]) <= 721}
 
 
-with open('pokemons_evo.csv', newline='',encoding="utf-8") as csvfile:
+with open('pokemon_alopez247.csv', newline='',encoding="utf-8") as csvfile:
 
     csv_data = csv.reader(csvfile)
 
