@@ -213,8 +213,12 @@ if(isset($_POST["P_ID"]) && isset($_POST["skill1"]) && isset($_POST["origin_skil
             echo "<h1>技能1更新成功</h1>";
         }
         else{
-            echo "<h1>Why would you try to duplicate skill???????????????</h1>";
-            echo $conn->error;
+            if(substr($conn->error, 0, 5) =="Dupli"){
+                echo "<h1>Why would you try to duplicate skill???????????????</h1>";
+            }
+            else{
+                echo "<h1>Wrong data , do better </h1>";
+            }
         }
         
 
@@ -236,8 +240,12 @@ if(isset($_POST["P_ID"]) && isset($_POST["skill2"]) && isset($_POST["origin_skil
             echo "<h1>技能2更新成功</h1>";
         }
         else{
-            echo "<h1>Why would you try to duplicate skill???????????????</h1>";
-            echo $conn->error;
+            if(substr($conn->error, 0, 5) =="Dupli"){
+                echo "<h1>Why would you try to duplicate skill???????????????</h1>";
+            }
+            else{
+                echo "<h1>Wrong data , do better </h1>";
+            }
         }
     }
     
@@ -257,8 +265,12 @@ if(isset($_POST["P_ID"]) && isset($_POST["skill3"]) && isset($_POST["origin_skil
             echo "<h1>技能3更新成功</h1>";
         }
         else{
-            echo "<h1>Why would you try to duplicate skill???????????????</h1>";
-            echo $conn->error;
+            if(substr($conn->error, 0, 5) =="Dupli"){
+                echo "<h1>Why would you try to duplicate skill???????????????</h1>";
+            }
+            else{
+                echo "<h1>Wrong data , do better </h1>";
+            }
         }
     }
     
