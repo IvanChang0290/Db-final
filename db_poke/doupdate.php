@@ -210,7 +210,17 @@ if(isset($_POST["P_ID"]) && isset($_POST["skill1"]) && isset($_POST["origin_skil
         $update_sql = "UPDATE have SET S_ID='$skill1' WHERE B_ID='$B_ID' AND P_ID='$P_ID' AND S_ID='$Ori_skill1'";
         $result = $conn->query($update_sql);
         if ($result=== TRUE) {
-            echo "<h1>技能1更新成功</h1>";
+            $sql = "SELECT DISTINCT Skill.name AS S_name FROM Skill WHERE Skill.S_ID='$skill1'";
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            $S1 = $row["S_name"];
+
+            $sql = "SELECT DISTINCT Skill.name AS S_name FROM Skill WHERE Skill.S_ID='$Ori_skill1'";
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            $OS1 = $row["S_name"];
+
+            echo "<h1>技能 $OS1 更新為 $S1 </h1>";
         }
         else{
             if(substr($conn->error, 0, 5) =="Dupli"){
@@ -237,7 +247,17 @@ if(isset($_POST["P_ID"]) && isset($_POST["skill2"]) && isset($_POST["origin_skil
         $update_sql = "UPDATE have SET S_ID='$skill2' WHERE B_ID='$B_ID' AND P_ID='$P_ID' AND S_ID='$Ori_skill2'";
         $result = $conn->query($update_sql);
         if ($result=== TRUE) {
-            echo "<h1>技能2更新成功</h1>";
+            $sql = "SELECT DISTINCT Skill.name AS S_name FROM Skill WHERE Skill.S_ID='$skill2'";
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            $S2 = $row["S_name"];
+
+            $sql = "SELECT DISTINCT Skill.name AS S_name FROM Skill WHERE Skill.S_ID='$Ori_skill2'";
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            $OS2 = $row["S_name"];
+
+            echo "<h1>技能 $OS2 更新為 $S2 </h1>";
         }
         else{
             if(substr($conn->error, 0, 5) =="Dupli"){
@@ -262,7 +282,17 @@ if(isset($_POST["P_ID"]) && isset($_POST["skill3"]) && isset($_POST["origin_skil
         $update_sql = "UPDATE have SET S_ID='$skill3' WHERE B_ID='$B_ID' AND P_ID='$P_ID' AND S_ID='$Ori_skill3'";
         $result = $conn->query($update_sql);
         if ($result === TRUE) {
-            echo "<h1>技能3更新成功</h1>";
+            $sql = "SELECT DISTINCT Skill.name AS S_name FROM Skill WHERE Skill.S_ID='$skill3'";
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            $S3 = $row["S_name"];
+
+            $sql = "SELECT DISTINCT Skill.name AS S_name FROM Skill WHERE Skill.S_ID='$Ori_skill3'";
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            $OS3 = $row["S_name"];
+
+            echo "<h1>技能 $OS3 更新為 $S3 </h1>";
         }
         else{
             if(substr($conn->error, 0, 5) =="Dupli"){
