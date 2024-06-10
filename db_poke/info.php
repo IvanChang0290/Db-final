@@ -190,7 +190,8 @@
                                 Pokemon.ATK AS P_ATK, 
                                 Pokemon.DEF AS P_DEF,
                                 Pokemon.HP AS P_HP, 
-                                Region.Name AS R_Name 
+                                Region.Name AS R_Name, 
+                                Region.R_ID AS R_ID
                             FROM 
                                 Have
                             JOIN 
@@ -202,6 +203,7 @@
 
                     $result = $conn->query($sql);  
                     $regin = '';  
+                    $R_ID = ''; 
                     if ($result->num_rows > 0) {    
                         while($row = $result->fetch_assoc()) {
                             echo "<tr><th>P_ID</th><td>" . $row["P_ID"]. "</td></tr>";
@@ -210,6 +212,7 @@
                             echo "<tr><th>DEF</th><td>" . $row["P_DEF"]. "</td></tr>";
                             echo "<tr><th>HP</th><td>" . $row["P_HP"]. "</td></tr>";
                             $regin = $row["R_Name"];
+                            $R_ID = $row["R_ID"];
                         }
                     } else {
                         echo "<tr><td colspan='4'>0 results</td></tr>";
@@ -278,31 +281,9 @@
 
     echo "<div class='all-container'>";
         echo "<div class='regin-container'>";
-        $sql = "SELECT DISTINCT
-                                Region.R_ID AS R_ID ,
-                                Region.Name AS R_Name 
-                            FROM 
-                                Have
-                            JOIN 
-                                Pokemon ON Have.P_ID = Pokemon.P_ID
-                            JOIN 
-                                Region ON Pokemon.R_ID = Region.R_ID
-                            WHERE 
-                                Have.B_ID = '$U_ID'AND Have.P_ID = '$P_ID'";
-        $result = $conn->query($sql);  
-        $R_ID = '';  
-        if ($result->num_rows > 0) {    
-        while($row = $result->fetch_assoc()) {
-            $R_ID = $row["R_ID"];
-            $R_Name = $row["R_Name"];
-            echo "<h1>Regin: {$R_Name}</h1>";
+            echo "<h1>Regin: {$regin}</h1>";
             $img_path = "pic/{$R_ID}.png";
             echo "<img src={$img_path} class='img2'>";
-        }
-        }
-        else {
-            echo "<tr><td colspan='4'>0 results</td></tr>";
-        }
         echo "</div>";
     echo "</div>";
 ?>
