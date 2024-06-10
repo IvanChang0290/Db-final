@@ -122,10 +122,8 @@
         .regin-container .table2 td {
             width: 70%;
         }
-        .regin-container h2 {
-            text-align: center;
-            color: #007bff;
-            margin-top: 20px;
+        .regin-container h1 {
+            font-size: 27px;
         }
         .back-button-container {
             text-align: center;
@@ -139,6 +137,19 @@
             cursor: pointer;
             border-radius: 5px;
             font-size: 16px;
+        }
+        .pokemon-button {
+            background-color: #ffffff;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            align-items: center;
+        }
+        .pokemon-button .img3 {
+            width: 100%;
         }
     </style>
 </head>
@@ -270,13 +281,14 @@
     echo "</div>";
 
     echo "<div class='all-container'>";
-        $sql = "SELECT DISTINCT Pokemon.info AS P_info FROM Pokemon WHERE Pokemon.P_ID = '$P_ID'";
-        $result = $conn->query($sql);  
-        if ($result->num_rows == 1) {  
-            $row = $result->fetch_assoc();
-            echo "<p>".$row["P_info"]."</p>";
-        }
-        $conn->close();
+        echo "<div class='regin-container'>";
+            $sql = "SELECT DISTINCT Pokemon.info AS P_info FROM Pokemon WHERE Pokemon.P_ID = '$P_ID'";
+            $result = $conn->query($sql);  
+            if ($result->num_rows == 1) {  
+                $row = $result->fetch_assoc();
+                echo "<p>".$row["P_info"]."</p>";
+            }
+        echo "</div>";
     echo "</div>";
 
     echo "<div class='all-container'>";
@@ -286,6 +298,36 @@
             echo "<img src={$img_path} class='img2'>";
         echo "</div>";
     echo "</div>";
+
+    $sql = "SELECT DISTINCT 
+                Pokemon.P_ID AS P_ID,
+                Pokemon.Name AS P_Name
+             FROM 
+                Pokemon
+            JOIN 
+                Evolve ON Evolve.Evo_P_ID = Pokemon.P_ID
+            WHERE 
+                Evolve.Ori_P_ID = '$P_ID'";
+
+    $result = $conn->query($sql);  
+    if ($result->num_rows >0) {  
+        echo "<div class='all-container'>";
+        echo "<div class='regin-container'>";
+            echo "<h1>Evloution</h1>";
+            echo "<div class='info-container'>";
+            while($row = $result->fetch_assoc()) {
+                $E_ID = $row["P_ID"];
+                echo "<button class='pokemon-button' onclick=\"location.href='info.php?ID=" . $ID . "&P_ID=" . $E_ID . "'\">";
+                echo "<img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{$E_ID}.png' class='img3'>";
+                echo $row["P_Name"];
+                echo"</button>";
+            }
+            echo "</div>";
+        echo "</div>";
+    echo "</div>";
+    }
+
+
 ?>
 <div>
 
