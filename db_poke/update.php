@@ -28,13 +28,24 @@
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             } 
+			
+			//session_start();
+			$ID = $_GET['ID'];
+			$sql = "SELECT U_ID FROM user WHERE password='$ID'";
+			$result = $conn->query($sql);
+			$U_ID = '';
+			if ($result->num_rows > 0) {
+				$row = $result->fetch_assoc();
+				$U_ID = $row["U_ID"];
+			}
+			else
+			{
+				echo "No such user";
+			}
 
-            $B_ID = $_GET['U_ID'];
+            $B_ID = $U_ID;
             $P_ID= $_GET['P_ID'];
 
-            session_start();
-            $_SESSION["B_ID"] = $B_ID;
-            $_SESSION["P_ID"] = $P_ID;
 
             if (isset($B_ID) && isset($P_ID)) {
                 $select_sql = "SELECT * FROM have WHERE B_ID='$B_ID' AND P_ID='$P_ID'"; 
