@@ -195,8 +195,7 @@
 </div>
 
 <div class="back-button-container">
-        <button onclick="location.href='visitor.php?'">返回</button>
-</div>
-
+        <button onclick="window.history.back()">返回</button>
+    </div>
 </body>
 </html>
