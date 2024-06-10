@@ -90,6 +90,22 @@
             border-radius: 5px;
             font-size: 16px;
         }
+        .logout-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .logout-container button {
+            background-color: #dc3545;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .logout-container button:hover {
+            background-color: #c82333;
+        }
     </style>
 </head>
 <body>
@@ -196,6 +212,12 @@
             ?>
             
         </table>
+    </div>
+
+    <div class="logout-container">
+        <form action="logout.php" method="post">
+            <button type="submit">登出</button>
+        </form>
     </div>
 
 </body>
