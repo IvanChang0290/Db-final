@@ -206,9 +206,9 @@
 <div class="back-button-container">
         <?php 
             session_start();
-            $_SESSION['U_ID'] = $_GET['U_ID'];
+            $_SESSION['ID'] = $_GET['ID'];
         ?>
-        <button onclick="location.href='display.php?U_ID=<?php echo $_GET['U_ID'] ?>'">返回</button>
+        <button onclick="location.href='display.php?ID=<?php echo $_GET['ID'] ?>'">返回</button>
 </div>
 
 </body>
