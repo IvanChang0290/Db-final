@@ -144,44 +144,45 @@
 </head>
 <body>
 
-<div class="all-container">
-    <div class="info-container">
-        <?php
-                    // ******** update your personal settings ******** 
-                    $servername = "localhost";
-                    $username = "root";
-                    $password = "123456789";
-                    $dbname = "db_poke";
+<div>
+<?php
+    echo "<div class='all-container'>";
+        echo "<div class='info-container'>";
+            $servername = "localhost";
+            $username = "root";
+            $password = "123456789";
+            $dbname = "db_poke";
 
-                    // Connect to MySQL server
-                    $conn = new mysqli($servername, $username, $password, $dbname);
+            // Connect to MySQL server
+            $conn = new mysqli($servername, $username, $password, $dbname);
                     
-                    // Set up character set
-                    if (!$conn->set_charset("utf8")) {
-                        printf("Error loading character set utf8: %s\n", $conn->error);
-                        exit();
-                    }
+            // Set up character set
+            if (!$conn->set_charset("utf8")) {
+                printf("Error loading character set utf8: %s\n", $conn->error);
+                exit();
+            }
                     
-                    // Check connection
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    } 
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            } 
 
-                    $ID = $_GET['ID'];
-                    $P_ID = $_GET['P_ID'];
-                    $sql = "SELECT U_ID FROM user WHERE password='$ID'";
-                    $result = $conn->query($sql);
+            $ID = $_GET['ID'];
+            $P_ID = $_GET['P_ID'];
+            $sql = "SELECT U_ID FROM user WHERE password='$ID'";
+            $result = $conn->query($sql);
 
-                    $U_ID = '';
-                    if ($result->num_rows > 0) {
-                        $row = $result->fetch_assoc();
-                        $U_ID = $row["U_ID"];
-                    }
+            $U_ID = '';
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $U_ID = $row["U_ID"];
+            }
                     
                     
-                    $img_path = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{$P_ID}.png";
-                    echo "<img src={$img_path}>";
-                    echo "<table class='table1'>";
+            $img_path = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{$P_ID}.png";
+
+            echo "<img src={$img_path}>";
+                echo "<table class='table1'>";
 
                     $sql = "SELECT DISTINCT
                                 Have.P_ID AS P_ID, 
@@ -261,77 +262,22 @@
                         echo "<tr><td colspan='4'>0 results</td></tr>";
                     }
                     echo "</table>";
+                
+        echo "</div>";
+    echo "</div>";
 
-
-                    $conn->close();
-
-                ?>
-    </div>
-</div>
-
-<div class="all-container">
-    <?php
-        $servername = "localhost";
-        $username = "root";
-        $password = "123456789";
-        $dbname = "db_poke";
-
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        
-        if (!$conn->set_charset("utf8")) {
-            printf("Error loading character set utf8: %s\n", $conn->error);
-            exit();
-        }
-        
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        } 
-
-        $P_ID = $_GET['P_ID'];
+    echo "<div class='all-container'>";
         $sql = "SELECT DISTINCT Pokemon.info AS P_info FROM Pokemon WHERE Pokemon.P_ID = '$P_ID'";
         $result = $conn->query($sql);  
         if ($result->num_rows == 1) {  
             $row = $result->fetch_assoc();
-            echo "<p>".$row["S_Name"]."</p>";
+            echo "<p>".$row["P_info"]."</p>";
         }
         $conn->close();
-    ?>
+    echo "</div>";
 
-</div>
-
-<div class="all-container">
-    <div class="regin-container">
-    <?php
-        // ******** update your personal settings ******** 
-        $servername = "localhost";
-        $username = "root";
-        $password = "123456789";
-        $dbname = "db_poke";
-
-        // Connect to MySQL server
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        
-        // Set up character set
-        if (!$conn->set_charset("utf8")) {
-            printf("Error loading character set utf8: %s\n", $conn->error);
-            exit();
-        }
-        
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        } 
-
-        $ID = $_GET['ID'];
-        $P_ID = $_GET['P_ID'];
-        $sql = "SELECT U_ID FROM user WHERE password='$ID'";
-        $result = $conn->query($sql);
-
-        $U_ID = '';
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $U_ID = $row["U_ID"];
-        }
+    echo "<div class='all-container'>";
+        echo "<div class='regin-container'>";
         $sql = "SELECT DISTINCT
                                 Region.R_ID AS R_ID 
                                 Region.Name AS R_Name 
@@ -357,11 +303,10 @@
         else {
             echo "<tr><td colspan='4'>0 results</td></tr>";
         }
-
-    ?>  
-
-</div>
-</div>
+        echo "</div>";
+    echo "</div>";
+?>
+<div>
 
 <div class="back-button-container">
         <?php 
