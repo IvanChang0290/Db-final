@@ -1,3 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Info</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9ecef;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .all-container {
+            width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            /* display: flex;  */
+            /* align-items: center;  */
+        }
+        .all-container .info-container {
+            display: flex; /* Add this line */
+            align-items: center; /* Add this line */
+
+        }
+        .info-container .img1 {
+            width: 20%;
+            border-radius: 8px;
+        }
+        .info-container .img2 {
+            width: 50%;
+            border-radius: 8px;
+        }
+        .info-container .table1 {
+            border-collapse: collapse;
+            width: 40%;
+            margin-left: 20px;
+            margin-top: 10px;
+            align-items: top; /* Add this line */
+        }
+        .info-container .table1 th, .info-container .table1 td {
+            text-align: left;
+            padding: 8px;
+        }
+        .info-container .table1 th {
+            background-color: #f2f2f2;
+            width: 30%;
+        }
+        .info-container .table1 td {
+            width: 70%;
+        }
+        .info-container .table2 {
+            border-collapse: collapse;
+            width: 40%;
+            margin-left: 20px;
+            margin-top: 10px;
+            align-items: top; /* Add this line */
+        }
+        .info-container .table2 th, .info-container .table2 td {
+            text-align: left;
+            padding: 8px;
+        }
+        .info-container .table2 th {
+            background-color: #f2f2f2;
+            width: 30%;
+        }
+        .info-container .table2 td {
+            width: 70%;
+        }
+        
+        .all-container .regin-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .regin-container .img1 {
+            width: 20%;
+            border-radius: 8px;
+        }
+        .regin-container .img2 {
+            width: 60%;
+            border-radius: 8px;
+        }
+        .regin-container .table1 {
+            border-collapse: collapse;
+            width: 40%;
+            margin-left: 20px;
+            margin-top: 10px;
+            align-items: top; 
+        }
+        .regin-container .table1 th, .regin-container .table1 td {
+            text-align: left;
+            padding: 8px;
+        }
+        .regin-container .table1 th {
+            width: 30%;
+        }
+        .regin-container .table1 td {
+            width: 70%;
+        }
+        .regin-container .table2 {
+            border-collapse: collapse;
+            width: 40%;
+            margin-left: 20px;
+            margin-top: 10px;
+            align-items: top; /* Add this line */
+        }
+        .regin-container .table2 th, .regin-container .table2 td {
+            text-align: left;
+            padding: 8px;
+        }
+        .regin-container .table2 th {
+            background-color: #f2f2f2;
+            width: 30%;
+        }
+        .regin-container .table2 td {
+            width: 70%;
+        }
+        .regin-container h1 {
+            font-size: 27px;
+        }
+        .back-button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .back-button-container button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .pokemon-button {
+            background-color: #ffffff;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            align-items: center;
+        }
+        .pokemon-button .img3 {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="all-container">
+<div class="regin-container">
+
 <?php
 // doupdate.php
 
@@ -95,3 +255,6 @@ else
 
 $conn->close();
 ?>
+
+</div>
+</div>
