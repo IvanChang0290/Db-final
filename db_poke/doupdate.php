@@ -209,7 +209,7 @@ if(isset($_POST["P_ID"]) && isset($_POST["skill1"]) && isset($_POST["origin_skil
     {
         $update_sql = "UPDATE have SET S_ID='$skill1' WHERE B_ID='$B_ID' AND P_ID='$P_ID' AND S_ID='$Ori_skill1'";
         $result = $conn->query($update_sql);
-        if ($result->num_rows > 0) {
+        if ($result=== TRUE) {
             echo "<h1>技能1更新成功</h1>";
         }
         else{
@@ -236,7 +236,7 @@ if(isset($_POST["P_ID"]) && isset($_POST["skill2"]) && isset($_POST["origin_skil
     {
         $update_sql = "UPDATE have SET S_ID='$skill2' WHERE B_ID='$B_ID' AND P_ID='$P_ID' AND S_ID='$Ori_skill2'";
         $result = $conn->query($update_sql);
-        if ($result->num_rows > 0) {
+        if ($result=== TRUE) {
             echo "<h1>技能2更新成功</h1>";
         }
         else{
@@ -261,7 +261,7 @@ if(isset($_POST["P_ID"]) && isset($_POST["skill3"]) && isset($_POST["origin_skil
     {
         $update_sql = "UPDATE have SET S_ID='$skill3' WHERE B_ID='$B_ID' AND P_ID='$P_ID' AND S_ID='$Ori_skill3'";
         $result = $conn->query($update_sql);
-        if ($result->num_rows > 0) {
+        if ($result === TRUE) {
             echo "<h1>技能3更新成功</h1>";
         }
         else{
