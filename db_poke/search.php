@@ -217,7 +217,7 @@
                                     <td>" . $row["P_ATK"]. "</td>
                                     <td>" . $row["P_DEF"]. "</td>
                                     <td>" . $row["R_Name"]. "</td>
-                                    <td><a href='info.php?U_ID=" . $U_ID . "&P_ID=" . $row["P_ID"] . "'>詳細資料</a></td>
+                                    <td><a href='info.php?ID=" . $ID . "&P_ID=" . $row["P_ID"] . "'>詳細資料</a></td>
                                   </tr>";
                         }
                     } else {
