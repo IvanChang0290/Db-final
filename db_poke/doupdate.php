@@ -214,7 +214,7 @@ if(isset($_POST["P_ID"]) && isset($_POST["skill1"]) && isset($_POST["origin_skil
         }
         else{
             echo "<h1>Why would you try to duplicate skill???????????????</h1>";
-            echo "<h1>$conn->error</h1>";
+            echo $conn->error;
         }
         
 
@@ -237,7 +237,7 @@ if(isset($_POST["P_ID"]) && isset($_POST["skill2"]) && isset($_POST["origin_skil
         }
         else{
             echo "<h1>Why would you try to duplicate skill???????????????</h1>";
-            echo "<h1>$conn->error</h1>";
+            echo $conn->error;
         }
     }
     
@@ -258,7 +258,7 @@ if(isset($_POST["P_ID"]) && isset($_POST["skill3"]) && isset($_POST["origin_skil
         }
         else{
             echo "<h1>Why would you try to duplicate skill???????????????</h1>";
-            echo "<h1>$conn->error</h1>";
+            echo $conn->error;
         }
     }
     
