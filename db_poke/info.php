@@ -279,7 +279,7 @@
     echo "<div class='all-container'>";
         echo "<div class='regin-container'>";
         $sql = "SELECT DISTINCT
-                                Region.R_ID AS R_ID 
+                                Region.R_ID AS R_ID ,
                                 Region.Name AS R_Name 
                             FROM 
                                 Have
@@ -296,7 +296,7 @@
             $R_ID = $row["R_ID"];
             $R_Name = $row["R_Name"];
             echo "<h1>Regin: {$R_Name}</h1>";
-            $img_path = "pic/{R_ID}.png";
+            $img_path = "pic/{$R_ID}.png";
             echo "<img src={$img_path} class='img2'>";
         }
         }
