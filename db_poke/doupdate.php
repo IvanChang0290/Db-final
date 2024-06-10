@@ -255,6 +255,6 @@ else
 </div>
 </div>
 
-<div class="back-button">
+<div class="back-button-container">
     <button onclick="location.href='display.php?ID=<?php echo $ID ?>'">返回</button>
 </div>
