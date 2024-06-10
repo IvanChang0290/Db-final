@@ -38,18 +38,48 @@ $P_ID = $_POST["P_ID"];
 $skill1 = $_POST['skill1'];
 $skill2 = $_POST['skill2'];
 $skill3 = $_POST['skill3'];
+$Ori_skill1 = $_POST['origin_skill1'];
+$Ori_skill2 = $_POST['origin_skill2'];
+$Ori_skill3 = $_POST['origin_skill3'];
 
 // Update skills
-$update_sql = "UPDATE have SET S_ID='$skill1' WHERE B_ID='$B_ID' AND P_ID='$P_ID' AND S_ID IN (SELECT S_ID FROM (SELECT S_ID FROM have WHERE B_ID='$B_ID' AND P_ID='$P_ID' LIMIT 1) AS temp)";
-$conn->query($update_sql);
+if(isset($_POST["P_ID"]) && isset($_POST["skill1"]) && isset($_POST["origin_skill1"]))
+{
+    $update_sql = "UPDATE have SET S_ID='$skill1' WHERE B_ID='$B_ID' AND P_ID='$P_ID' AND S_ID='$Ori_skill1'";
+    $conn->query($update_sql);
+    echo $conn->error;
+    echo "技能更新成功";
+}
+else
+{
+    echo "資料不完全";
+}
 
-$update_sql = "UPDATE have SET S_ID='$skill2' WHERE B_ID='$B_ID' AND P_ID='$P_ID' AND S_ID IN (SELECT S_ID FROM (SELECT S_ID FROM have WHERE B_ID='$B_ID' AND P_ID='$P_ID' LIMIT 1, 1) AS temp)";
-$conn->query($update_sql);
+if(isset($_POST["P_ID"]) && isset($_POST["skill2"]) && isset($_POST["origin_skill2"]))
+{
+    $update_sql = "UPDATE have SET S_ID='$skill2' WHERE B_ID='$B_ID' AND P_ID='$P_ID' AND S_ID='$Ori_skill2'";
+    $conn->query($update_sql);
+    echo $conn->error;
+    echo "技能更新成功";
+}
+else
+{
+    echo "資料不完全";
+}
 
-$update_sql = "UPDATE have SET S_ID='$skill3' WHERE B_ID='$B_ID' AND P_ID='$P_ID' AND S_ID IN (SELECT S_ID FROM (SELECT S_ID FROM have WHERE B_ID='$B_ID' AND P_ID='$P_ID' LIMIT 2, 1) AS temp)";
-$conn->query($update_sql);
+if(isset($_POST["P_ID"]) && isset($_POST["skill3"]) && isset($_POST["origin_skill3"]))
+{
+    $update_sql = "UPDATE have SET S_ID='$skill3' WHERE B_ID='$B_ID' AND P_ID='$P_ID' AND S_ID='$Ori_skill3'";
+    $conn->query($update_sql);
+    echo $conn->error;
+    echo "技能更新成功";
+}
+else
+{
+    echo "資料不完全";
+}
 
-echo "技能更新成功";
+
 
 $conn->close();
 ?>
