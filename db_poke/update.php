@@ -31,7 +31,10 @@
 </head>
 <body>
 <h1 align="center">修改寶可夢技能</h1>
-<form action="doupdate.php" method="post">    
+<?php
+    $url='doupdate.php?ID=' . $_GET['ID'] ;
+?>
+<form action="<?php echo $url ?>" method="post">    
     <table width="500" border="1" bgcolor="#cccccc" align="center">
         <?php
             // ******** update your personal settings ******** 
