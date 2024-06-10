@@ -321,7 +321,7 @@
     if ($result->num_rows >0) {  
         echo "<div class='all-container'>";
         echo "<div class='regin-container'>";
-            echo "<h1>Owned Evloution</h1>";
+            echo "<h1>Evloution</h1>";
             echo "<div class='info-container'>";
             while($row = $result->fetch_assoc()) {
                 $E_ID = $row["P_ID"];
