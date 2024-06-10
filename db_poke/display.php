@@ -139,8 +139,36 @@
 
     <div class="add-button-container">
         <?php 
+            $servername = "localhost";
+            $username = "root";
+            $password = "123456789";
+            $dbname = "db_poke";
+
+            // Connect to MySQL server
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            
+            // Set up character set
+            if (!$conn->set_charset("utf8")) {
+                printf("Error loading character set utf8: %s\n", $conn->error);
+                exit();
+            }
+            
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            } 
+
+            $ID = $_GET['ID'];
+            $sql = "SELECT U_ID FROM user WHERE password='$ID'";
+            $result = $conn->query($sql);
+
+            $U_ID = '';
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $U_ID = $row["U_ID"];
+            }
             session_start();
-            $_SESSION['ID'] = $_GET['ID'];
+            $_SESSION['U_ID'] = $U_ID;
         ?>
         <button onclick="location.href='add.php?ID=<?php echo $_GET['ID'] ?>'">新增 Pokémon</button>
     </div>
@@ -218,8 +246,8 @@
                                   <td>" . $row["P_HP"]. "</td>
                                   <td>" . $row["R_Name"]. "</td>
                                   <td><a href='info.php?ID=" . $ID . "&P_ID=" . $row["P_ID"] . "'>詳細資料</a></td>
-                                  <td><a href='delete.php?U_ID=" . $ID . "&P_ID=" . $row["P_ID"] . "'>刪除</a></td>
-                                  <td><a href='update.php?U_ID=" . $ID . "&P_ID=" . $row["P_ID"] . "'>修改</a></td>
+                                  <td><a href='delete.php?ID=" . $ID . "&P_ID=" . $row["P_ID"] . "'>刪除</a></td>
+                                  <td><a href='update.php?ID=" . $ID . "&P_ID=" . $row["P_ID"] . "'>修改</a></td>
                                   </tr>";
                     }
                 } else {
