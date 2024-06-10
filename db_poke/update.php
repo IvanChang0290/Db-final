@@ -3,6 +3,31 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>修改寶可夢技能</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    table {
+        margin-top: 20px;
+    }
+    .back-button {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    .back-button button {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .back-button button:hover {
+        background-color: #218838;
+    }
+</style>
 </head>
 <body>
 <h1 align="center">修改寶可夢技能</h1>
@@ -96,5 +121,8 @@
         ?>
     </table>
 </form>
+<div class="back-button">
+    <button onclick="location.href='display.php?ID=<?php echo $ID ?>'">返回</button>
+</div>
 </body>
 </html>
