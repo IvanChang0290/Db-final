@@ -97,8 +97,9 @@
             background-color: #5a6268;
         }
         .login-button-container {
-            text-align: center;
-            margin: 20px 0;
+            position: absolute;
+            top: 20px;
+            right: 20px;
         }
         .login-button-container button {
             background-color: #007bff;
@@ -115,6 +116,10 @@
     </style>
 </head>
 <body>
+
+    <div class="login-button-container">
+        <button onclick="location.href='index.html'">登錄</button>
+    </div>
 
     <h1>Pokémon Pokédex</h1>
 
@@ -205,10 +210,6 @@
                 $conn->close();
             ?>
         </table>
-    </div>
-
-    <div class="login-button-container">
-        <button onclick="location.href='index.html'">登陸</button>
     </div>
 
 </body>
