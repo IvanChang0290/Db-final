@@ -180,7 +180,7 @@
                                   <td>" . $row["P_DEF"]. "</td>
                                   <td>" . $row["P_HP"]. "</td>
                                   <td>" . $row["R_Name"]. "</td>
-                                  <td><a href='info2.php?U_ID=" . $U_ID . "&P_ID=" . $row["P_ID"] . "'>詳細資料</a></td>
+                                  <td><a href='info2.php?&P_ID=" . $row["P_ID"] . "'>詳細資料</a></td>
                                   </tr>";
                     }
                 } else {

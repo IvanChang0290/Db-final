@@ -116,7 +116,7 @@
         <h2>Search Pokémon</h2>
         <?php 
             session_start();
-            $_SESSION['U_ID'] = $_GET['U_ID'];
+            $_SESSION['ID'] = $_GET['ID'];
         ?>
         <form action="search.php" method="get">
             <input type="text" id="search-query" name="search_query" placeholder="Search Pokémon...">
@@ -133,9 +133,9 @@
     <div class="add-button-container">
         <?php 
             session_start();
-            $_SESSION['U_ID'] = $_GET['U_ID'];
+            $_SESSION['ID'] = $_GET['ID'];
         ?>
-        <button onclick="location.href='add.php?U_ID=<?php echo $_GET['U_ID'] ?>'">新增 Pokémon</button>
+        <button onclick="location.href='add.php?ID=<?php echo $_GET['ID'] ?>'">新增 Pokémon</button>
     </div>
 
     <div class="table-container">
@@ -172,8 +172,16 @@
                     die("Connection failed: " . $conn->connect_error);
                 } 
 
-                $U_ID = $_GET['U_ID'];
-                // $sql = "SELECT P_ID,S_ID FROM Have WHERE B_ID = '$U_ID'";
+                $ID = $_GET['ID'];
+                $sql = "SELECT U_ID FROM user WHERE password='$ID'";
+                $result = $conn->query($sql);
+
+                $U_ID = '';
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $U_ID = $row["U_ID"];
+                }
+
                 $sql = "SELECT DISTINCT
                             Have.P_ID AS P_ID, 
                             Pokemon.Name AS P_Name, 
@@ -201,8 +209,8 @@
                                   <td>" . $row["P_DEF"]. "</td>
                                   <td>" . $row["P_HP"]. "</td>
                                   <td>" . $row["R_Name"]. "</td>
-                                  <td><a href='info.php?U_ID=" . $U_ID . "&P_ID=" . $row["P_ID"] . "'>詳細資料</a></td>
-                                  <td><a href='delete.php?U_ID=" . $U_ID . "&P_ID=" . $row["P_ID"] . "'>刪除</a></td>
+                                  <td><a href='info.php?ID=" . $ID . "&P_ID=" . $row["P_ID"] . "'>詳細資料</a></td>
+                                  <td><a href='delete.php?U_ID=" . $ID . "&P_ID=" . $row["P_ID"] . "'>刪除</a></td>
                                   </tr>";
                     }
                 } else {

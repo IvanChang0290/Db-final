@@ -102,7 +102,7 @@
                     die("Connection failed: " . $conn->connect_error);
                 } 
 
-                $U_ID = $_GET['U_ID'];
+                $U_ID = '0';
                 $P_ID = $_GET['P_ID'];
                 
                 $img_path = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{$P_ID}.png";
