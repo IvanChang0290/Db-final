@@ -210,13 +210,13 @@ if(isset($_POST["P_ID"]) && isset($_POST["skill1"]) && isset($_POST["origin_skil
         $update_sql = "UPDATE have SET S_ID='$skill1' WHERE B_ID='$B_ID' AND P_ID='$P_ID' AND S_ID='$Ori_skill1'";
         $conn->query($update_sql);
         echo $conn->error;
-        echo "技能更新成功";
+        echo "<h1>技能1更新成功</h1>";
     }
     
 }
 else
 {
-    echo "資料不完全";
+    echo "<h1>資料不完全</h1>";
 }
 
 if(isset($_POST["P_ID"]) && isset($_POST["skill2"]) && isset($_POST["origin_skill2"]))
@@ -226,13 +226,13 @@ if(isset($_POST["P_ID"]) && isset($_POST["skill2"]) && isset($_POST["origin_skil
         $update_sql = "UPDATE have SET S_ID='$skill2' WHERE B_ID='$B_ID' AND P_ID='$P_ID' AND S_ID='$Ori_skill2'";
         $conn->query($update_sql);
         echo $conn->error;
-        echo "技能更新成功";
+        echo "<h1>技能2更新成功</h1>";
     }
     
 }
 else
 {
-    echo "資料不完全";
+    echo "<h1>資料不完全</h1>";
 }
 
 if(isset($_POST["P_ID"]) && isset($_POST["skill3"]) && isset($_POST["origin_skill3"]))
@@ -242,19 +242,19 @@ if(isset($_POST["P_ID"]) && isset($_POST["skill3"]) && isset($_POST["origin_skil
         $update_sql = "UPDATE have SET S_ID='$skill3' WHERE B_ID='$B_ID' AND P_ID='$P_ID' AND S_ID='$Ori_skill3'";
         $conn->query($update_sql);
         echo $conn->error;
-        echo "技能更新成功";
+        echo "<h1>技能3更新成功</h1>";
     }
     
 }
 else
 {
-    echo "資料不完全";
+    echo "<h1>資料不完全</h1>";
 }
 
-
-
-$conn->close();
 ?>
-
 </div>
+</div>
+
+<div class="back-button">
+    <button onclick="location.href='display.php?ID=<?php echo $ID ?>'">返回</button>
 </div>
