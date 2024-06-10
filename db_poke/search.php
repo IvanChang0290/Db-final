@@ -75,10 +75,41 @@
     
     <div class="button-container">
         <?php
+            // ******** update your personal settings ******** 
+            $servername = "localhost";
+            $username = "root";
+            $password = "123456789";
+            $dbname = "db_poke";
+
+            // Connect to MySQL server
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            
+            // Set up character set
+            if (!$conn->set_charset("utf8")) {
+                printf("Error loading character set utf8: %s\n", $conn->error);
+                exit();
+            }
+            
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            } 
+
             session_start();
-            $U_ID = $_SESSION['U_ID'];
+            $ID = $_SESSION['ID'];
+            $sql = "SELECT U_ID FROM user WHERE password='$ID'";
+            $result = $conn->query($sql);
+            $U_ID = '';
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $U_ID = $row["U_ID"];
+            }
+            else
+            {
+                echo "No such user";
+            }
         ?>
-        <button onclick="window.location.href='display.php?U_ID=<?php echo $U_ID ?>'">返回</button>
+        <button onclick="window.location.href='display.php?ID=<?php echo $ID ?>'">返回</button>
     </div>
 
     <div class="table-container">
@@ -115,7 +146,18 @@
                 } 
                 
                 session_start();
-                $U_ID = $_SESSION['U_ID'];
+                $ID = $_SESSION['ID'];
+                $sql = "SELECT U_ID FROM user WHERE password='$ID'";
+                $result = $conn->query($sql);
+                $U_ID = '';
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $U_ID = $row["U_ID"];
+                }
+                else
+                {
+                    echo "No such user";
+                }
                 // Get search query and filter
                 $search_query = $_GET['search_query'];
                 $search_filter = $_GET['search_filter'];
@@ -190,10 +232,41 @@
 
     <div class="button-container">
         <?php
+            // ******** update your personal settings ******** 
+            $servername = "localhost";
+            $username = "root";
+            $password = "123456789";
+            $dbname = "db_poke";
+
+            // Connect to MySQL server
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            
+            // Set up character set
+            if (!$conn->set_charset("utf8")) {
+                printf("Error loading character set utf8: %s\n", $conn->error);
+                exit();
+            }
+            
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            } 
+
             session_start();
-            $U_ID = $_SESSION['U_ID'];
+            $ID = $_SESSION['ID'];
+            $sql = "SELECT U_ID FROM user WHERE password='$ID'";
+            $result = $conn->query($sql);
+            $U_ID = '';
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $U_ID = $row["U_ID"];
+            }
+            else
+            {
+                echo "No such user";
+            }
         ?>
-        <button onclick="window.location.href='display.php?U_ID=<?php echo $U_ID?>'">返回</button>
+        <button onclick="window.location.href='display.php?ID=<?php echo $ID?>'">返回</button>
     </div>
 
 </body>
