@@ -72,7 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     session_start();
     $U_ID = $_SESSION['U_ID'];
-    echo "hi2 ".$U_ID ;
     $P_ID = $_POST['P_ID'];
     $Skill_1 = $_POST['Skill_1'];
     $Skill_2 = $_POST['Skill_2'];
