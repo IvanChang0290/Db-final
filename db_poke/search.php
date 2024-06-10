@@ -109,7 +109,6 @@
                 echo "No such user";
             }
         ?>
-        <button onclick="window.location.href='display.php?ID=<?php echo $ID ?>'">返回</button>
     </div>
 
     <div class="table-container">
