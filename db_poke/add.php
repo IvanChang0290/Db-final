@@ -74,9 +74,9 @@
 <div class="back-button-container">
     <?php 
         session_start();
-        $_SESSION['ID'] = $_GET['ID'];
+        $_SESSION['U_ID'] = $_GET['U_ID'];
     ?>
-    <button onclick="location.href='display.php?ID=<?php echo $_GET['ID'] ?>'">返回</button>
+    <button onclick="location.href='display.php?U_ID=<?php echo $_GET['U_ID'] ?>'">返回</button>
 </div>
 
 <?php
@@ -162,8 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             if(!empty($Skill_3)){
                 $insert_sql = "INSERT INTO have (B_ID, P_ID, S_ID) VALUES ('$U_ID', '$P_ID', '$Skill_3')";
-                if ($conn->
-                query($insert_sql) === TRUE) {
+                if ($conn->query($insert_sql) === TRUE) {
                     echo "Skills added successfully.";
                 } else {
                     echo "Error: " . $insert_sql . "<br>" . $conn->error;
@@ -182,6 +181,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $conn->close();
 }
 ?>
-
 </body>
 </html>
