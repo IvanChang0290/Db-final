@@ -83,7 +83,7 @@
             <tr>
                 <th>#</th>
                 <th>Name</th>
-                <th>Type</th>
+                
                 <th>HP</th>
                 <th>ATK</th>
                 <th>DEF</th>
@@ -139,16 +139,19 @@
 
                 switch ($search_filter) {
                     case 'id':
-                        $sql .= "Pokemon.P_ID = '$search_query'";
+                        $sql .= "Pokemon.P_ID = '$search_query'
+                        GROUP by Have.P_ID";
                         break;
                     case 'name':
-                        $sql .= "Pokemon.Name = '$search_query'";
+                        $sql .= "Pokemon.Name = '$search_query'
+                        GROUP by Have.P_ID";
                         break;
                     case 'type':
                         $sql .= "Pokemon_Type.Type = '$search_query'";
                         break;
                     case 'region':
-                        $sql .= "Region.Name = '$search_query'";
+                        $sql .= "Region.Name = '$search_query'
+                        GROUP by Have.P_ID";
                         break;
                     default:
                         $sql .= "1"; // Default case to prevent SQL errors, although it shouldn't happen.
@@ -164,7 +167,7 @@
                             echo "<tr>
                                     <td>" . $row["P_ID"]. "</td>
                                     <td>" . $row["P_Name"]. "</td>
-                                    <td>" . $row["P_Type"]. "</td>
+                                    
                                     <td>" . $row["P_HP"]. "</td>
                                     <td>" . $row["P_ATK"]. "</td>
                                     <td>" . $row["P_DEF"]. "</td>
@@ -173,7 +176,7 @@
                                   </tr>";
                         }
                     } else {
-                        echo "<tr><td colspan='8'>No results found</td></tr>";
+                        echo "<tr><td colspan='7'>No results found</td></tr>";
                     }
                 }
                 $conn->close();
