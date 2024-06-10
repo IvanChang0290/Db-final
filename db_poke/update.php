@@ -116,6 +116,7 @@
 
                     echo "<tr>
                         <th>技能 1</th>
+<<<<<<< Updated upstream
                         <td bgcolor='#FFFFFF'><input type='text' name='skill1' value='$skill1' />
                         <input type='hidden' name='origin_skill1' value='$skill1' /></td>
                         <td class='update-button'><button type='button'>更新</button></td>
@@ -130,7 +131,38 @@
                         <th>技能 3</th>
                         <td bgcolor='#FFFFFF'><input type='text' name='skill3' value='$skill3' />
                         <input type='hidden' name='origin_skill3' value='$skill3' /></td>
+=======
+<<<<<<< HEAD
+                        <td bgcolor='#FFFFFF'><input type='text' name='skill1' value='$skill1' /></td>
+                        <td class='update-button'><button type='button' onclick=\"location.href='doupdate.php?ID=<?php echo $ID ?>更新</button></td>
+                        </tr>";
+                    echo "<tr>
+                        <th>技能 2</th>
+                        <td bgcolor='#FFFFFF'><input type='text' name='skill2' value='$skill2' /></td>
+                        <td class='update-button'><button type='button' onclick=\"location.href='doupdate.php?ID=<?php echo $ID ?>更新</button></td>
+                        </tr>";
+                    echo "<tr>
+                        <th>技能 3</th>
+                        <td bgcolor='#FFFFFF'><input type='text' name='skill3' value='$skill3' /></td>
+                        <td class='update-button'><button type='button' onclick=\"location.href='doupdate.php?ID=<?php echo $ID ?>更新</button></td>
+=======
+                        <td bgcolor='#FFFFFF'><input type='text' name='skill1' value='$skill1' />
+                        <input type='hidden' name='origin_skill1' value='$skill1' /></td>
+>>>>>>> Stashed changes
                         <td class='update-button'><button type='button'>更新</button></td>
+                        </tr>";
+                    echo "<tr>
+                        <th>技能 2</th>
+                        <td bgcolor='#FFFFFF'><input type='text' name='skill2' value='$skill2' />
+                        <input type='hidden' name='origin_skill2' value='$skill2' /></td>
+                        <td class='update-button'><button type='button'>更新</button></td>
+                        </tr>";
+                    echo "<tr>
+                        <th>技能 3</th>
+                        <td bgcolor='#FFFFFF'><input type='text' name='skill3' value='$skill3' />
+                        <input type='hidden' name='origin_skill3' value='$skill3' /></td>
+                        <td class='update-button'><button type='button'>更新</button></td>
+>>>>>>> 7d998402b4242958968e2fd70b2372a5ab69900b
                         </tr>";
 
                 } else {
