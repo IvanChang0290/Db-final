@@ -29,7 +29,7 @@ if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     if (password_verify($pass, $row['password'])) {
         echo "Login successful";
-        header("Location: display.php?U_ID=" . urlencode($row['U_ID']));
+        header("Location: display.php?ID=" . urlencode($row['password']));
 		exit;
 
     } else {

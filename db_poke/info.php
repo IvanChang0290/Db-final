@@ -102,8 +102,17 @@
                     die("Connection failed: " . $conn->connect_error);
                 } 
 
-                $U_ID = $_GET['U_ID'];
+                $ID = $_GET['ID'];
                 $P_ID = $_GET['P_ID'];
+                $sql = "SELECT U_ID FROM user WHERE password='$ID'";
+                $result = $conn->query($sql);
+
+                $U_ID = '';
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $U_ID = $row["U_ID"];
+                }
+                
                 
                 $img_path = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{$P_ID}.png";
                 echo "<img src={$img_path}>";
