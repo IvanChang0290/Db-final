@@ -266,7 +266,6 @@
                             WHERE 
                                 Have.B_ID = '$U_ID'AND Have.P_ID = '$P_ID'";
 
-                    echo "<tr><th>Regin</th><td>" . $regin. "</td></tr>";
                     $result = $conn->query($sql);  
 
                     if ($result->num_rows > 0) {    
@@ -294,7 +293,7 @@
 
     echo "<div class='all-container'>";
         echo "<div class='regin-container'>";
-            echo "<h1>Regin: {$regin}</h1>";
+            echo "<h1>Region: {$regin}</h1>";
             $img_path = "pic/{$R_ID}.png";
             echo "<img src={$img_path} class='img2'>";
         echo "</div>";
