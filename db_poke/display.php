@@ -156,6 +156,7 @@
                 <th>region</th>
                 <th>  </th>
                 <th>  </th>
+                <th>  </th>
             </tr>
             
             <?php
@@ -218,6 +219,7 @@
                                   <td>" . $row["R_Name"]. "</td>
                                   <td><a href='info.php?ID=" . $ID . "&P_ID=" . $row["P_ID"] . "'>詳細資料</a></td>
                                   <td><a href='delete.php?U_ID=" . $ID . "&P_ID=" . $row["P_ID"] . "'>刪除</a></td>
+                                  <td><a href='update.php?U_ID=" . $ID . "&P_ID=" . $row["P_ID"] . "'>修改</a></td>
                                   </tr>";
                     }
                 } else {
