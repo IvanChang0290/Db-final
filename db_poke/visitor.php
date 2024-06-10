@@ -208,7 +208,7 @@
     </div>
 
     <div class="login-button-container">
-        <button onclick="location.href='login.php'">登陸</button>
+        <button onclick="location.href='index.html'">登陸</button>
     </div>
 
 </body>
