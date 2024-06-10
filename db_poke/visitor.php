@@ -104,7 +104,7 @@
 
     <div class="search-container">
         <h2>Search Pokémon</h2>
-        <form action="search.php" method="get">
+        <form action="search2.php" method="get">
             <input type="text" id="search-query" name="search_query" placeholder="Search Pokémon...">
             <select id="search-filter" name="search_filter">
                 <option value="id">ID</option>
