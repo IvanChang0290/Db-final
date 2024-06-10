@@ -208,8 +208,8 @@ if(isset($_POST["P_ID"]) && isset($_POST["skill1"]) && isset($_POST["origin_skil
     if($Ori_skill1 != $skill1)
     {
         $update_sql = "UPDATE have SET S_ID='$skill1' WHERE B_ID='$B_ID' AND P_ID='$P_ID' AND S_ID='$Ori_skill1'";
-        $conn->query($update_sql);
-        echo $conn->error;
+        $result = $conn->query($update_sql);
+        echo "<h1>$result</h1>";
         echo "<h1>技能1更新成功</h1>";
     }
     
