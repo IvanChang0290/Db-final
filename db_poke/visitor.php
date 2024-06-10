@@ -96,6 +96,22 @@
         .back-button-container button:hover {
             background-color: #5a6268;
         }
+        .login-button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .login-button-container button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .login-button-container button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -189,6 +205,10 @@
                 $conn->close();
             ?>
         </table>
+    </div>
+
+    <div class="login-button-container">
+        <button onclick="location.href='login.php'">登陸</button>
     </div>
 
 </body>
