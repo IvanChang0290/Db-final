@@ -157,39 +157,49 @@
 
 <div>
 <?php
+     $servername = "localhost";
+     $username = "root";
+     $password = "123456789";
+     $dbname = "db_poke";
+
+     // Connect to MySQL server
+     $conn = new mysqli($servername, $username, $password, $dbname);
+             
+     // Set up character set
+     if (!$conn->set_charset("utf8")) {
+         printf("Error loading character set utf8: %s\n", $conn->error);
+         exit();
+     }
+             
+     // Check connection
+     if ($conn->connect_error) {
+         die("Connection failed: " . $conn->connect_error);
+     }
+
+    $ID = $_GET['ID'];
+    $P_ID = $_GET['P_ID'];
+    $sql = "SELECT U_ID FROM user WHERE password='$ID'";
+    $result = $conn->query($sql);
+
+    $U_ID = '';
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $U_ID = $row["U_ID"];
+    }
+    $sql = "SELECT DISTINCT
+                Have.P_ID AS H_ID
+            FROM 
+                Have
+            WHERE 
+                Have.B_ID = '$U_ID'AND Have.P_ID = '$P_ID'";
+
+    $result = $conn->query($sql);  
+    $regin = '';  
+    $R_ID = ''; 
+    if ($result->num_rows > 0) {
     echo "<div class='all-container'>";
         echo "<div class='info-container'>";
-            $servername = "localhost";
-            $username = "root";
-            $password = "123456789";
-            $dbname = "db_poke";
-
-            // Connect to MySQL server
-            $conn = new mysqli($servername, $username, $password, $dbname);
-                    
-            // Set up character set
-            if (!$conn->set_charset("utf8")) {
-                printf("Error loading character set utf8: %s\n", $conn->error);
-                exit();
-            }
-                    
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            } 
-
-            $ID = $_GET['ID'];
-            $P_ID = $_GET['P_ID'];
-            $sql = "SELECT U_ID FROM user WHERE password='$ID'";
-            $result = $conn->query($sql);
-
-            $U_ID = '';
-            if ($result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-                $U_ID = $row["U_ID"];
-            }
-                    
-                    
+            
             $img_path = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{$P_ID}.png";
 
             echo "<img src={$img_path}>";
@@ -213,8 +223,6 @@
                                 Have.B_ID = '$U_ID'AND Have.P_ID = '$P_ID'";
 
                     $result = $conn->query($sql);  
-                    $regin = '';  
-                    $R_ID = ''; 
                     if ($result->num_rows > 0) {    
                         while($row = $result->fetch_assoc()) {
                             echo "<tr><th>P_ID</th><td>" . $row["P_ID"]. "</td></tr>";
@@ -326,6 +334,14 @@
         echo "</div>";
     echo "</div>";
     }
+}
+else{
+    echo "<div class='all-container'>";
+    echo "<div class='regin-container'>";
+            echo "<h1>OOPS! You Haven't Got This Pokémon Yet</h1>";
+    echo "</div>";
+    echo "</div>";
+}
 
 
 ?>
