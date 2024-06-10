@@ -118,7 +118,7 @@
 <body>
 
     <div class="login-button-container">
-        <button onclick="location.href='index.html'">登錄</button>
+        <button onclick="location.href='index.html'">登入</button>
     </div>
 
     <h1>Pokémon Pokédex</h1>
