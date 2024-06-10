@@ -1,79 +1,89 @@
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>修改寶可夢技能</title>
 </head>
-
 <body>
 <h1 align="center">修改寶可夢技能</h1>
-	<form action="doupdate.php" method="post">	
-	  <table width="500" border="1" bgcolor="#cccccc" align="center">
-		
-		<?php
+<form action="doupdate.php" method="post">    
+    <table width="500" border="1" bgcolor="#cccccc" align="center">
+        <?php
+            // ******** update your personal settings ******** 
+            $servername = "localhost";
+            $username = "root";
+            $password = "123456789";
+            $dbname = "db_poke";
 
-			// ******** update your personal settings ******** 
-			$servername = "localhost";
-			$username = "root";
-			$password = "123456789";
-			$dbname = "db_poke";
+            // Connect MySQL server
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            
+            // set up char set
+            if (!$conn->set_charset("utf8")) {
+                printf("Error loading character set utf8: %s\n", $conn->error);
+                exit();
+            }
+            
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            } 
 
-			// Connect MySQL server
-			$conn = new mysqli($servername, $username, $password, $dbname);
-			
-			// set up char set
-			if (!$conn->set_charset("utf8")) {
-				printf("Error loading character set utf8: %s\n", $conn->error);
-				exit();
-			}
-			
-			// Check connection
-			if ($conn->connect_error) {
-				die("Connection failed: " . $conn->connect_error);
-			} 
+            $B_ID = $_GET['U_ID'];
+            $P_ID= $_GET['P_ID'];
 
-			$B_ID = $_GET['U_ID'];
-			$P_ID= $_GET['P_ID'];
+            session_start();
+            $_SESSION["B_ID"] = $B_ID;
+            $_SESSION["P_ID"] = $P_ID;
 
-			 
-			session_start();
-			$_SESSION["old_isbn"]=$ISBN;
+            if (isset($B_ID) && isset($P_ID)) {
+                $select_sql = "SELECT * FROM have WHERE B_ID='$B_ID' AND P_ID='$P_ID'"; 
+                $result = $conn->query($select_sql);
 
+                if ($result->num_rows > 0) {
+                    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                    
+                    echo "<tr>
+                        <th>P_ID</th>
+                        <td bgcolor='#FFFFFF'><input type='text' name='P_ID' value='" . $row['P_ID'] . "' readonly></td>
+                        </tr>";
+                    
+                    // Fetch and display skills
+                    $skill1 = $skill2 = $skill3 = "";
+                    $skills_sql = "SELECT S_ID FROM have WHERE B_ID='$B_ID' AND P_ID='$P_ID'";
+                    $skills_result = $conn->query($skills_sql);
+                    $skills = array();
+                    while ($skills_row = mysqli_fetch_assoc($skills_result)) {
+                        $skills[] = $skills_row['S_ID'];
+                    }
+                    $skill1 = isset($skills[0]) ? $skills[0] : "";
+                    $skill2 = isset($skills[1]) ? $skills[1] : "";
+                    $skill3 = isset($skills[2]) ? $skills[2] : "";
 
-			if (isset($B_ID) && isset($P_ID)) {
-				
-				$select_sql = "select * from have where B_ID='$B_ID' and P_ID='$P_ID'"; // TODO 
-				$result = $conn->query($select_sql);
+                    echo "<tr>
+                        <th>技能 1</th>
+                        <td bgcolor='#FFFFFF'><input type='text' name='skill1' value='$skill1' /></td>
+                        </tr>";
+                    echo "<tr>
+                        <th>技能 2</th>
+                        <td bgcolor='#FFFFFF'><input type='text' name='skill2' value='$skill2' /></td>
+                        </tr>";
+                    echo "<tr>
+                        <th>技能 3</th>
+                        <td bgcolor='#FFFFFF'><input type='text' name='skill3' value='$skill3' /></td>
+                        </tr>";
 
-				if ($result->num_rows > 0) {
-					$row = mysqli_fetch_array ( $result, MYSQLI_ASSOC );
-					
-					echo "<tr>
-						<th>B_ID</th>
-						<td bgcolor='#FFFFFF'><input type='text' name='B_ID' value=" . $row['B_ID'] . " readonly></td>
-						</tr>";
-					
-					echo "<tr>
-						<th>P_ID</th>
-						<td bgcolor='#FFFFFF'><input type='text' name='P_ID' value=" . $row['P_ID'] . " readonly></td>
-						</tr>";
-					echo "<tr>
-						<th>Skill</th>
-						<td bgcolor='#FFFFFF'><input type='text' name='S_ID' value=" . $row['S_ID'] . " /></td>
-						</tr>";
-					
-					echo "<th colspan='2'><input type='submit' value='更新'/></th>";
-					echo "</tr>";
-
-				}else{
-					echo "查詢失敗!";
-				}
-
-			}else{
-				echo "資料不完全";
-			}
-		?>
-
-	  </table>
-	</form>
+                    echo "<tr>
+                        <th colspan='2'><input type='submit' value='更新'/></th>
+                        </tr>";
+                } else {
+                    echo "查詢失敗!";
+                }
+            } else {
+                echo "資料不完全";
+            }
+        ?>
+    </table>
+</form>
 </body>
 </html>
