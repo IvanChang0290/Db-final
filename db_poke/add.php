@@ -73,10 +73,40 @@
 
 <div class="back-button-container">
     <?php 
+        $servername = "localhost";
+        $username = "root";
+        $password = "123456789";
+        $dbname = "db_poke";
+
+        // Connect to MySQL server
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        
+        // Set up character set
+        if (!$conn->set_charset("utf8")) {
+            printf("Error loading character set utf8: %s\n", $conn->error);
+            exit();
+        }
+        
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        } 
+        
         session_start();
-        $_SESSION['U_ID'] = $_GET['U_ID'];
+        $U_ID = $_SESSION['U_ID'];
+        $sql = "SELECT password FROM user WHERE U_ID='$U_ID'";
+        $result = $conn->query($sql);
+        $ID = '';
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $ID = $row["password"];
+        }
+        else
+        {
+            echo "No such user";
+        }
     ?>
-    <button onclick="location.href='display.php?U_ID=<?php echo $_GET['U_ID'] ?>'">返回</button>
+    <button onclick="location.href='display.php?ID=<?php echo $ID ?>'">返回</button>
 </div>
 
 <?php
@@ -92,6 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     session_start();
     $U_ID = $_SESSION['U_ID'];
+
     $P_ID = $_POST['P_ID'];
     $Skill_1 = $_POST['Skill_1'];
     $Skill_2 = $_POST['Skill_2'];
@@ -162,7 +193,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             if(!empty($Skill_3)){
                 $insert_sql = "INSERT INTO have (B_ID, P_ID, S_ID) VALUES ('$U_ID', '$P_ID', '$Skill_3')";
-                if ($conn->query($insert_sql) === TRUE) {
+                if ($conn->
+                query($insert_sql) === TRUE) {
                     echo "Skills added successfully.";
                 } else {
                     echo "Error: " . $insert_sql . "<br>" . $conn->error;
@@ -173,7 +205,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         if($fail == 0)
         {
-            header('Location: display.php?U_ID='.$U_ID);
+            session_start();
+            $U_ID = $_SESSION['U_ID'];
+            $sql = "SELECT password FROM user WHERE U_ID='$U_ID'";
+            $result = $conn->query($sql);
+            $ID = '';
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $ID = $row["password"];
+            }
+            else
+            {
+                echo "No such user";
+            }
+            header('Location: display.php?ID='.$ID);
             exit;
         }
     }
@@ -181,5 +226,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $conn->close();
 }
 ?>
+
 </body>
 </html>
