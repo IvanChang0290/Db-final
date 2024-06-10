@@ -27,6 +27,21 @@
     .back-button button:hover {
         background-color: #218838;
     }
+    .update-button {
+        text-align: center;
+    }
+    .update-button button {
+        background-color: #007bff;
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+    .update-button button:hover {
+        background-color: #0056b3;
+    }
 </style>
 </head>
 <body>
@@ -102,19 +117,19 @@
                     echo "<tr>
                         <th>技能 1</th>
                         <td bgcolor='#FFFFFF'><input type='text' name='skill1' value='$skill1' /></td>
+                        <td class='update-button'><button type='button'>更新</button></td>
                         </tr>";
                     echo "<tr>
                         <th>技能 2</th>
                         <td bgcolor='#FFFFFF'><input type='text' name='skill2' value='$skill2' /></td>
+                        <td class='update-button'><button type='button'>更新</button></td>
                         </tr>";
                     echo "<tr>
                         <th>技能 3</th>
                         <td bgcolor='#FFFFFF'><input type='text' name='skill3' value='$skill3' /></td>
+                        <td class='update-button'><button type='button'>更新</button></td>
                         </tr>";
 
-                    echo "<tr>
-                        <th colspan='2'><input type='submit' value='更新'/></th>
-                        </tr>";
                 } else {
                     echo "查詢失敗!";
                 }
