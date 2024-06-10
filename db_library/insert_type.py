@@ -31,7 +31,7 @@ with open('pokemon_alopez247.csv', newline='',encoding="utf-8") as csvfile:
         if debug:
             print(new_query)
 
-        # cursor.execute(new_query)
+        cursor.execute(new_query)
 
         if row[3] != '':
             query='INSERT INTO Pokemon_type(P_ID,type) '+'VALUES('
