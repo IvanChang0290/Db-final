@@ -91,15 +91,30 @@
 
 
             if (isset($B_ID) && isset($P_ID)) {
+                $sql = "SELECT name FROM pokemon WHERE P_ID='$P_ID'";
+                $result = $conn->query($sql);
+                $pokeName = '';
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $pokeName = $row["name"];
+                }
+                else
+                {
+                    echo "No such pokemon";
+                }
+
                 $select_sql = "SELECT * FROM have WHERE B_ID='$B_ID' AND P_ID='$P_ID'"; 
                 $result = $conn->query($select_sql);
 
                 if ($result->num_rows > 0) {
                     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
                     
+                    
+                    
                     echo "<tr>
                         <th>P_ID</th>
-                        <td bgcolor='#FFFFFF'><input type='text' name='P_ID' value='" . $row['P_ID'] . "' readonly></td>
+                        <td>$pokeName</td>
+                        <td bgcolor='#FFFFFF'><input type='text' name='P_ID' value='" . $row['P_ID']. "' readonly></td>
                         </tr>";
                     
                     // Fetch and display skills
@@ -113,21 +128,61 @@
                     $skill1 = isset($skills[0]) ? $skills[0] : "";
                     $skill2 = isset($skills[1]) ? $skills[1] : "";
                     $skill3 = isset($skills[2]) ? $skills[2] : "";
+                    
+                    
+                    $sql = "SELECT name FROM skill WHERE S_ID='$skill1'";
+                    $result = $conn->query($sql);
+                    $skillName = '';
+                    if ($result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                        $skillName = $row["name"];
+                    }
+                    else
+                    {
+                        echo "No such skill";
+                    }
+
+                    $sql2 = "SELECT name FROM skill WHERE S_ID='$skill2'";
+                    $result2 = $conn->query($sql2);
+                    $skillName2 = '';
+                    if ($result2->num_rows > 0) {
+                        $row = $result2->fetch_assoc();
+                        $skillName2 = $row["name"];
+                    }
+                    else
+                    {
+                        echo "No such skill";
+                    }
+
+                    $sql3 = "SELECT name FROM skill WHERE S_ID='$skill3'";
+                    $result3 = $conn->query($sql3);
+                    $skillName3 = '';
+                    if ($result3->num_rows > 0) {
+                        $row = $result3->fetch_assoc();
+                        $skillName3 = $row["name"];
+                    }
+                    else
+                    {
+                        echo "No such skill";
+                    }
 
                     echo "<tr>
                         <th>技能 1</th>
+                        <td >$skillName</td>
                         <td bgcolor='#FFFFFF'><input type='text' name='skill1' value='$skill1' maxlength='3'/>
                         <input type='hidden' name='origin_skill1' value='$skill1' /></td>
                         <td class='update-button'><button type='submit' name='update_skill1'>更新</button></td>
                         </tr>";
                     echo "<tr>
                         <th>技能 2</th>
+                        <td >$skillName2</td>
                         <td bgcolor='#FFFFFF'><input type='text' name='skill2' value='$skill2' maxlength='3'/>
                         <input type='hidden' name='origin_skill2' value='$skill2' /></td>
                         <td class='update-button'><button type='submit' name='update_skill2'>更新</button></td>
                         </tr>";
                     echo "<tr>
                         <th>技能 3</th>
+                        <td >$skillName3</td>
                         <td bgcolor='#FFFFFF'><input type='text' name='skill3' value='$skill3' maxlength='3'/>
                         <input type='hidden' name='origin_skill3' value='$skill3' /></td>
                         <td class='update-button'><button type='submit' name='update_skill3'>更新</button></td>
