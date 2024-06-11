@@ -171,21 +171,18 @@
                         <td >$skillName</td>
                         <td bgcolor='#FFFFFF'><input type='text' name='skill1' value='$skill1' maxlength='3'/>
                         <input type='hidden' name='origin_skill1' value='$skill1' /></td>
-                        <td class='update-button'><button type='submit' name='update_skill1'>更新</button></td>
                         </tr>";
                     echo "<tr>
                         <th>技能 2</th>
                         <td >$skillName2</td>
                         <td bgcolor='#FFFFFF'><input type='text' name='skill2' value='$skill2' maxlength='3'/>
                         <input type='hidden' name='origin_skill2' value='$skill2' /></td>
-                        <td class='update-button'><button type='submit' name='update_skill2'>更新</button></td>
                         </tr>";
                     echo "<tr>
                         <th>技能 3</th>
                         <td >$skillName3</td>
                         <td bgcolor='#FFFFFF'><input type='text' name='skill3' value='$skill3' maxlength='3'/>
                         <input type='hidden' name='origin_skill3' value='$skill3' /></td>
-                        <td class='update-button'><button type='submit' name='update_skill3'>更新</button></td>
                         </tr>";
 
                 } else {
@@ -196,7 +193,11 @@
             }
         ?>
     </table>
+    <div class="update-button">
+        <button type='submit' >更新</button>
+    </div>
 </form>
+
 <div class="back-button">
     <button onclick="location.href='display.php?ID=<?php echo $ID ?>'">返回</button>
 </div>
