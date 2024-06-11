@@ -31,12 +31,11 @@ $U_ID = substr($U_ID, 0, 8);
 $username = $_POST['username'];
 $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 $email = $_POST['email'];
-$date_of_birth = $_POST['date_of_birth'];
 $country = $_POST['country'];
 $game_ID = $_POST['game_ID'];
 
 // Insert user into database
-$sql = "INSERT INTO User (U_ID,Name,Password,Email,Date_of_birth,Country,Game_ID) VALUES ('$U_ID', '$username', '$password', '$email', '$date_of_birth', '$country', '$game_ID')";
+$sql = "INSERT INTO User (U_ID,Name,Password,Email,Country,Game_ID) VALUES ('$U_ID', '$username', '$password', '$email', '$country', '$game_ID')";
 
 if ($conn->query($sql) === FALSE) {
     
