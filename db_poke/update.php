@@ -134,13 +134,14 @@
         margin-top: 20px;
     }
     .back-button button {
-        background-color: #28a745;
+        background-color: #007bff;
         color: white;
         padding: 10px 20px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
         font-size: 16px;
+        margin-left: 20px;
     }
     .back-button button:hover {
         background-color: #218838;
