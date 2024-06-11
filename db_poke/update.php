@@ -141,7 +141,8 @@
         border-radius: 5px;
         cursor: pointer;
         font-size: 16px;
-        margin-left: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
     }
     .back-button button:hover {
         background-color: #218838;
