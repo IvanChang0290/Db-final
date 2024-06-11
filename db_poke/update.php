@@ -12,7 +12,7 @@
             padding: 0;
         }
         .all-container {
-            width: 800px;
+            width: 400px;
             margin: 20px auto;
             padding: 20px;
             border: 1px solid #ccc;
@@ -48,10 +48,10 @@
         }
         .info-container .table1 th {
             background-color: #f2f2f2;
-            width: 30%;
+            width: 20%;
         }
         .info-container .table1 td {
-            width: 70%;
+            width: 40%;
         }
         .info-container .table2 {
             border-collapse: collapse;
