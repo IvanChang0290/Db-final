@@ -144,9 +144,9 @@
         margin-left: 10px;
         margin-right: 10px;
     }
-    .back-button button:hover {
+    /* .back-button button:hover {
         background-color: #0056b3;
-    }
+    } */
     .update-button {
         text-align: center;
     }

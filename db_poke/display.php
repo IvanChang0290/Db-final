@@ -104,9 +104,9 @@
             border-radius: 5px;
             font-size: 16px;
         }
-        .logout-container button:hover {
+        /* .logout-container button:hover {
             background-color: #c82333;
-        }
+        } */
         .user-container {
             position: absolute;
             top: 20px;
@@ -121,9 +121,9 @@
             border-radius: 5px;
             font-size: 16px;
         }
-        .user-container button:hover {
+        /* .user-container button:hover {
             background-color: #0066cc;
-        }
+        } */
     </style>
 </head>
 <body>
