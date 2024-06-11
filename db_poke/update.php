@@ -5,11 +5,129 @@
 <title>修改寶可夢技能</title>
 <style>
     body {
-        font-family: Arial, sans-serif;
-    }
-    table {
-        margin-top: 20px;
-    }
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9ecef;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .all-container {
+            width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            /* display: flex;  */
+            /* align-items: center;  */
+        }
+        .all-container .info-container {
+            display: flex; /* Add this line */
+            align-items: center; /* Add this line */
+
+        }
+        .info-container .img1 {
+            width: 20%;
+            border-radius: 8px;
+        }
+        .info-container .img2 {
+            width: 50%;
+            border-radius: 8px;
+        }
+        .info-container .table1 {
+            border-collapse: collapse;
+            width: 40%;
+            margin-left: 20px;
+            margin-top: 10px;
+            align-items: top; /* Add this line */
+        }
+        .info-container .table1 th, .info-container .table1 td {
+            text-align: left;
+            padding: 8px;
+        }
+        .info-container .table1 th {
+            background-color: #f2f2f2;
+            width: 30%;
+        }
+        .info-container .table1 td {
+            width: 70%;
+        }
+        .info-container .table2 {
+            border-collapse: collapse;
+            width: 40%;
+            margin-left: 20px;
+            margin-top: 10px;
+            align-items: top; /* Add this line */
+        }
+        .info-container .table2 th, .info-container .table2 td {
+            text-align: left;
+            padding: 8px;
+        }
+        .info-container .table2 th {
+            background-color: #f2f2f2;
+            width: 30%;
+        }
+        .info-container .table2 td {
+            width: 70%;
+        }
+        
+        .all-container .regin-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .regin-container .img1 {
+            width: 20%;
+            border-radius: 8px;
+        }
+        .regin-container .img2 {
+            width: 60%;
+            border-radius: 8px;
+        }
+        .regin-container .table1 {
+            border-collapse: collapse;
+            width: 40%;
+            margin-left: 20px;
+            margin-top: 10px;
+            align-items: top; 
+        }
+        .regin-container .table1 th, .regin-container .table1 td {
+            text-align: left;
+            padding: 8px;
+        }
+        .regin-container .table1 th {
+            width: 30%;
+        }
+        .regin-container .table1 td {
+            width: 70%;
+        }
+        .regin-container .table2 {
+            border-collapse: collapse;
+            width: 40%;
+            margin-left: 20px;
+            margin-top: 10px;
+            align-items: top; /* Add this line */
+        }
+        .regin-container .table2 th, .regin-container .table2 td {
+            text-align: left;
+            padding: 8px;
+        }
+        .regin-container .table2 th {
+            background-color: #f2f2f2;
+            width: 30%;
+        }
+        .regin-container .table2 td {
+            width: 70%;
+        }
+        .regin-container h1 {
+            font-size: 27px;
+        }
+        .back-button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
     .back-button {
         display: flex;
         justify-content: center;
@@ -46,11 +164,13 @@
 </head>
 <body>
 <h1 align="center">修改寶可夢技能</h1>
+<div class='all-container'>
+<div class='info-container'>
 <?php
     $url='doupdate.php?ID=' . $_GET['ID'] ;
 ?>
 <form action="<?php echo $url ?>" method="post">    
-    <table width="500" border="1" bgcolor="#cccccc" align="center">
+    <table class='table1'>
         <?php
             // ******** update your personal settings ******** 
             $servername = "localhost";
@@ -197,7 +317,8 @@
         <button type='submit' >更新</button>
     </div>
 </form>
-
+</div>
+</div>
 <div class="back-button">
     <button onclick="location.href='display.php?ID=<?php echo $ID ?>'">返回</button>
 </div>
