@@ -166,10 +166,8 @@
 <h1 align="center">修改寶可夢技能</h1>
 <div class='all-container'>
 <div class='regin-container'>
-<?php
-    $url='doupdate.php?ID=' . $_GET['ID'] ;
-?>
-<form action="<?php echo $url ?>" method="post">    
+
+<form method="post">    
     <table class='table1'>
         <?php
             // ******** update your personal settings ******** 
@@ -313,12 +311,17 @@
             }
         ?>
     </table>
+    <?php
+        $url='doupdate.php?ID=' . $_GET['ID'] ;
+    ?>
     <div class="update-button">
-        <button type='submit' >更新</button>
+        <button type='submit' formaction="<?php echo $url ?>">更新</button>
+        <button formaction="display.php?ID=<?php echo $ID ?>">返回</button>
+        
     </div>
 </form>
 <div class="back-button">
-    <button onclick="location.href='display.php?ID=<?php echo $ID ?>'">返回</button>
+    
 </div>
 </div>
 </div>
