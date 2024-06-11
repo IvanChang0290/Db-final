@@ -165,7 +165,7 @@
 <body>
 <h1 align="center">修改寶可夢技能</h1>
 <div class='all-container'>
-<div class='info-container'>
+<div class='regin-container'>
 <?php
     $url='doupdate.php?ID=' . $_GET['ID'] ;
 ?>
