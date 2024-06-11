@@ -12,7 +12,7 @@
             padding: 0;
         }
         .all-container {
-            width: 600px;
+            width: 400px;
             margin: 20px auto;
             padding: 20px;
             border: 1px solid #ccc;
@@ -88,7 +88,7 @@
         }
         .regin-container .table1 {
             border-collapse: collapse;
-            width: 40%;
+            width: 100%;
             margin-left: 20px;
             margin-top: 10px;
             align-items: top; 
@@ -232,7 +232,7 @@
                     echo "<tr>
                         <th>P_ID</th>
                         <td>$pokeName</td>
-                        <td bgcolor='#FFFFFF'><input type='text' name='P_ID' value='" . $row['P_ID']. "' readonly></td>
+                        <td><input type='text' name='P_ID' value='" . $row['P_ID']. "' readonly></td>
                         </tr>";
                     
                     // Fetch and display skills
