@@ -12,7 +12,7 @@
             padding: 0;
         }
         .all-container {
-            width: 400px;
+            width: 600px;
             margin: 20px auto;
             padding: 20px;
             border: 1px solid #ccc;
@@ -101,7 +101,7 @@
             width: 30%;
         }
         .regin-container .table1 td {
-            width: 70%;
+            width: 35%;
         }
         .regin-container .table2 {
             border-collapse: collapse;
@@ -287,19 +287,19 @@
                     echo "<tr>
                         <th>技能 1</th>
                         <td >$skillName</td>
-                        <td bgcolor='#FFFFFF'><input type='text' name='skill1' value='$skill1' maxlength='3'/>
+                        <td ><input type='text' name='skill1' value='$skill1' maxlength='3'/>
                         <input type='hidden' name='origin_skill1' value='$skill1' /></td>
                         </tr>";
                     echo "<tr>
                         <th>技能 2</th>
                         <td >$skillName2</td>
-                        <td bgcolor='#FFFFFF'><input type='text' name='skill2' value='$skill2' maxlength='3'/>
+                        <td ><input type='text' name='skill2' value='$skill2' maxlength='3'/>
                         <input type='hidden' name='origin_skill2' value='$skill2' /></td>
                         </tr>";
                     echo "<tr>
                         <th>技能 3</th>
                         <td >$skillName3</td>
-                        <td bgcolor='#FFFFFF'><input type='text' name='skill3' value='$skill3' maxlength='3'/>
+                        <td ><input type='text' name='skill3' value='$skill3' maxlength='3'/>
                         <input type='hidden' name='origin_skill3' value='$skill3' /></td>
                         </tr>";
 
