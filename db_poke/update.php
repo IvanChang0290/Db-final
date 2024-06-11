@@ -317,10 +317,11 @@
         <button type='submit' >更新</button>
     </div>
 </form>
-</div>
-</div>
 <div class="back-button">
     <button onclick="location.href='display.php?ID=<?php echo $ID ?>'">返回</button>
 </div>
+</div>
+</div>
+
 </body>
 </html>
