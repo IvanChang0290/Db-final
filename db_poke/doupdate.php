@@ -220,7 +220,7 @@ if(isset($_POST["P_ID"]) && isset($_POST["skill1"]) && isset($_POST["origin_skil
             $row = $result->fetch_assoc();
             $OS1 = $row["S_name"];
 
-            echo "<h1>技能 $OS1 更新為 $S1 </h1>";
+            echo "<h1>技能 $OS1 ($Ori_skill1) 更新為 $S1 ($skill1)</h1>";
         }
         else{
             if(substr($conn->error, 0, 5) =="Dupli"){
@@ -257,7 +257,7 @@ if(isset($_POST["P_ID"]) && isset($_POST["skill2"]) && isset($_POST["origin_skil
             $row = $result->fetch_assoc();
             $OS2 = $row["S_name"];
 
-            echo "<h1>技能 $OS2 更新為 $S2 </h1>";
+            echo "<h1>技能 $OS2 ($Ori_skill2) 更新為 $S2 ($skill2)</h1>";
         }
         else{
             if(substr($conn->error, 0, 5) =="Dupli"){
@@ -292,7 +292,7 @@ if(isset($_POST["P_ID"]) && isset($_POST["skill3"]) && isset($_POST["origin_skil
             $row = $result->fetch_assoc();
             $OS3 = $row["S_name"];
 
-            echo "<h1>技能 $OS3 更新為 $S3 </h1>";
+            echo "<h1>技能 $OS3 ($Ori_skill3) 更新為 $S3 ($skill3)</h1>";
         }
         else{
             if(substr($conn->error, 0, 5) =="Dupli"){
