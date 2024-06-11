@@ -314,15 +314,12 @@
     <?php
         $url='doupdate.php?ID=' . $_GET['ID'] ;
     ?>
-    <div class="update-button">
+    <div class="back-button">
         <button type='submit' formaction="<?php echo $url ?>">更新</button>
         <button formaction="display.php?ID=<?php echo $ID ?>">返回</button>
         
     </div>
 </form>
-<div class="back-button">
-    
-</div>
 </div>
 </div>
 
