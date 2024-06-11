@@ -135,9 +135,7 @@
     </div>
 
     <div class="user-container">
-        <form action="logout.php" method="post">
             <button onclick="location.href='U_info.php?ID=<?php echo $_GET['ID'] ?>'">User</button>
-        </form>
     </div>
 
     <h1>Pokémon List</h1>
