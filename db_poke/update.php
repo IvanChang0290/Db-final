@@ -256,10 +256,24 @@
                     if ($result->num_rows > 0) {
                         $row = $result->fetch_assoc();
                         $skillName = $row["name"];
+                        echo "<tr>
+                        <th>技能 1</th>
+                        <td >$skillName</td>
+                        <td ><input type='text' name='skill1' value='$skill1' maxlength='3'/>
+                        <input type='hidden' name='origin_skill1' value='$skill1' /></td>
+                        </tr>";
+
                     }
                     else
                     {
-                        echo "No such skill";
+                        echo "<tr>
+                        <th>技能 1</th>
+                        <td >skillName</td>
+                        <td ><input type='text' name='skill1' value='$skill1' maxlength='3'/>
+                        <input type='hidden' name='origin_skill1' value='None' /></td>
+                        </tr>";
+
+                        //echo "No such skill";
                     }
 
                     $sql2 = "SELECT name FROM skill WHERE S_ID='$skill2'";
@@ -268,10 +282,23 @@
                     if ($result2->num_rows > 0) {
                         $row = $result2->fetch_assoc();
                         $skillName2 = $row["name"];
+                        
+                        echo "<tr>
+                        <th>技能 2</th>
+                        <td >$skillName2</td>
+                        <td ><input type='text' name='skill2' value='$skill2' maxlength='3'/>
+                        <input type='hidden' name='origin_skill2' value='$skill2' /></td>
+                        </tr>";
                     }
                     else
                     {
-                        echo "No such skill";
+                        echo "<tr>
+                        <th>技能 2</th>
+                        <td >skillName</td>
+                        <td ><input type='text' name='skill2' value='$skill2' maxlength='3'/>
+                        <input type='hidden' name='origin_skill2' value='None' /></td>
+                        </tr>";
+                        //echo "No such skill";
                     }
 
                     $sql3 = "SELECT name FROM skill WHERE S_ID='$skill3'";
@@ -280,30 +307,28 @@
                     if ($result3->num_rows > 0) {
                         $row = $result3->fetch_assoc();
                         $skillName3 = $row["name"];
-                    }
-                    else
-                    {
-                        echo "No such skill";
-                    }
-
-                    echo "<tr>
-                        <th>技能 1</th>
-                        <td >$skillName</td>
-                        <td ><input type='text' name='skill1' value='$skill1' maxlength='3'/>
-                        <input type='hidden' name='origin_skill1' value='$skill1' /></td>
-                        </tr>";
-                    echo "<tr>
-                        <th>技能 2</th>
-                        <td >$skillName2</td>
-                        <td ><input type='text' name='skill2' value='$skill2' maxlength='3'/>
-                        <input type='hidden' name='origin_skill2' value='$skill2' /></td>
-                        </tr>";
-                    echo "<tr>
+                        
+                        echo "<tr>
                         <th>技能 3</th>
                         <td >$skillName3</td>
                         <td ><input type='text' name='skill3' value='$skill3' maxlength='3'/>
                         <input type='hidden' name='origin_skill3' value='$skill3' /></td>
                         </tr>";
+                    }
+                    else
+                    {
+                        echo "<tr>
+                        <th>技能 3</th>
+                        <td >skillName</td>
+                        <td ><input type='text' name='skill3' value='$skill3' maxlength='3'/>
+                        <input type='hidden' name='origin_skill3' value='None' /></td>
+                        </tr>";
+                        //echo "No such skill";
+                    }
+
+                    
+                    
+                    
 
                 } else {
                     echo "查詢失敗!";
