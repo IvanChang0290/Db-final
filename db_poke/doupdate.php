@@ -205,10 +205,19 @@ $Ori_skill3 = $_POST['origin_skill3'];
 // Update skills
 if(isset($_POST["P_ID"]) && isset($_POST["skill1"]) && isset($_POST["origin_skill1"]) )
 {
-    if($Ori_skill1 != $skill1)
+    if($Ori_skill1 != $skill1 && strlen($skill1) > 0)
     {
-        $update_sql = "UPDATE have SET S_ID='$skill1' WHERE B_ID='$B_ID' AND P_ID='$P_ID' AND S_ID='$Ori_skill1'";
-        $result = $conn->query($update_sql);
+        if($Ori_skill1 != 'None')
+        {
+            $update_sql = "UPDATE have SET S_ID='$skill1' WHERE B_ID='$B_ID' AND P_ID='$P_ID' AND S_ID='$Ori_skill1'";
+            $result = $conn->query($update_sql);
+        }
+        else
+        {
+            $update_sql = "INSERT into have (B_ID, P_ID, S_ID) VALUES ('$B_ID', '$P_ID', '$skill1')";
+            $result = $conn->query($update_sql);
+        }
+        
         if ($result=== TRUE) {
             $sql = "SELECT DISTINCT Skill.name AS S_name FROM Skill WHERE Skill.S_ID='$skill1'";
             $result = $conn->query($sql);
@@ -242,10 +251,19 @@ else
 
 if(isset($_POST["P_ID"]) && isset($_POST["skill2"]) && isset($_POST["origin_skill2"]))
 {
-    if($Ori_skill2 != $skill2)
+    if($Ori_skill2 != $skill2 && strlen($skill2) > 0)
     {
-        $update_sql = "UPDATE have SET S_ID='$skill2' WHERE B_ID='$B_ID' AND P_ID='$P_ID' AND S_ID='$Ori_skill2'";
-        $result = $conn->query($update_sql);
+        if($Ori_skill2 != 'None')
+        {
+            $update_sql = "UPDATE have SET S_ID='$skill2' WHERE B_ID='$B_ID' AND P_ID='$P_ID' AND S_ID='$Ori_skill2'";
+            $result = $conn->query($update_sql);
+        }
+        else
+        {
+            $update_sql = "INSERT into have (B_ID, P_ID, S_ID) VALUES ('$B_ID', '$P_ID', '$skill2')";
+            $result = $conn->query($update_sql);
+        }
+
         if ($result=== TRUE) {
             $sql = "SELECT DISTINCT Skill.name AS S_name FROM Skill WHERE Skill.S_ID='$skill2'";
             $result = $conn->query($sql);
@@ -277,10 +295,19 @@ else
 
 if(isset($_POST["P_ID"]) && isset($_POST["skill3"]) && isset($_POST["origin_skill3"]))
 {
-    if($Ori_skill3 != $skill3)
+    if($Ori_skill3 != $skill3 && strlen($skill3) > 0)
     {
-        $update_sql = "UPDATE have SET S_ID='$skill3' WHERE B_ID='$B_ID' AND P_ID='$P_ID' AND S_ID='$Ori_skill3'";
-        $result = $conn->query($update_sql);
+        if($Ori_skill1 != 'None')
+        {
+            $update_sql = "UPDATE have SET S_ID='$skill3' WHERE B_ID='$B_ID' AND P_ID='$P_ID' AND S_ID='$Ori_skill3'";
+            $result = $conn->query($update_sql);
+        }
+        else
+        {
+            $update_sql = "INSERT into have (B_ID, P_ID, S_ID) VALUES ('$B_ID', '$P_ID', '$skill3')";
+            $result = $conn->query($update_sql);
+        }
+
         if ($result === TRUE) {
             $sql = "SELECT DISTINCT Skill.name AS S_name FROM Skill WHERE Skill.S_ID='$skill3'";
             $result = $conn->query($sql);
