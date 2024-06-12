@@ -297,7 +297,7 @@ if(isset($_POST["P_ID"]) && isset($_POST["skill3"]) && isset($_POST["origin_skil
 {
     if($Ori_skill3 != $skill3 && strlen($skill3) > 0)
     {
-        if($Ori_skill1 != 'None')
+        if($Ori_skill3 != 'None')
         {
             $update_sql = "UPDATE have SET S_ID='$skill3' WHERE B_ID='$B_ID' AND P_ID='$P_ID' AND S_ID='$Ori_skill3'";
             $result = $conn->query($update_sql);
